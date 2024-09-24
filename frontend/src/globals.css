@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+   --titulo: 'Allerta Stencil', sans-serif;
+   --texto: 'Inter', sans-serif;
+   --white: #faf1e6;
+   --yellow: #ffff17;
+   --green: #17ff17;
+   --blue: #178bff;
+   --black: #0a0601;
+}
+
+*{
+   border-color: var(--yellow);
+   color: var(--white);
+   font-family: var(--texto);
+   transition: 0.3s all ease-in-out;
+}
+
+::-webkit-scrollbar{
+   position: absolute;
+   height: 10px;
+   width: 10px;
+}
+
+::-webkit-scrollbar-track{
+   background: var(--black);
+}
+
+::-webkit-scrollbar-thumb{
+   background: var(--yellow);
+   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+   background: var(--white);
+}

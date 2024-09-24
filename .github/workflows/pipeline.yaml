@@ -1,0 +1,24 @@
+name: Stats CM Brasil Pipeline
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - run: |
+          bash pipeline/index.sh
+          git config --global user.name 'ViniRoveri'
+          git config --global user.email 'viniciusroverirocha@gmail.com'
+          git add .
+          git diff --staged --quiet || git commit -m "API Update from Pipeline"
+          git push

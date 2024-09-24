@@ -1,0 +1,24 @@
+const homePageItems = [
+   {
+      url: '/maiores/historia/333',
+      title: 'Maiores História', 
+      text: 'Os rankings de maiores da história de cada categoria, baseado em cálculos sobre resultados, recordes, e performances em campeonatos!'
+   },
+   {
+      url: '/maiores/ano/333',
+      title: 'Maiores Ano', 
+      text: 'O ranking da atualidade sempre atualizado com quem vem dominando o cenário do esporte em cada categoria!'
+   },
+   {
+      url: '/recordes/average/333',
+      title: 'História dos Recordes', 
+      text: 'Todos recordes quebrados por brasileiros na história do esporte por todas categorias!'
+   },
+   {
+      url: '/links',
+      title: 'Links Úteis', 
+      text: 'Links que sempre se pode precisar, separados especialmente pra fácil acesso!'
+   }
+]
+
+export default homePageItems
