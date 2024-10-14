@@ -2,7 +2,7 @@ import pipelineMaioresHistoria from './partialsMaiores/maioresHistoria.js'
 import pipelineMaioresAno from './partialsMaiores/maioresAno.js'
 import fs from 'fs'
 
-export default async function pipelineMaiores(){
+export default function pipelineMaiores(){
    console.log('Starting Maiores pipepline...')
 
    const wcaExport = JSON.parse(
@@ -24,8 +24,8 @@ export default async function pipelineMaiores(){
    const championshipsResults = wcaExport.results.filter(r => championshipsIds.includes(r.competitionId) && r.roundTypeId == 'f')
    const peopleResults = wcaExport.results.filter(r => peopleIds.includes(r.personId))
 
-   await pipelineMaioresHistoria(championships, people, ranksAverage, ranksSingle, championshipsResults, peopleResults)
-   await pipelineMaioresAno(championships, championshipsComps, people, ranksAverage, ranksSingle, peopleResults, competitions, championshipsResults)
+   pipelineMaioresHistoria(championships, people, ranksAverage, ranksSingle, championshipsResults, peopleResults)
+   pipelineMaioresAno(championships, championshipsComps, people, ranksAverage, ranksSingle, peopleResults, competitions, championshipsResults)
    
    console.log('Maiores pipeline finished sucessfully!')
 }

@@ -11,8 +11,7 @@ type Props = {
 export default async function page(props: Props){
    const maioresAnoWinners = await apiService.getMaioresAnoWinners()
 
-   const selectedEventId = props.params.eventId
-   const selectedEventName = eventsInfos.find(e => e.id == selectedEventId)?.name
+   const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
 
    return (
       <>
@@ -23,7 +22,7 @@ export default async function page(props: Props){
       </div>
 
       {selectedEventName ?
-         <MaioresAnoWinnersInfo maioresAnoWinners={maioresAnoWinners} eventId={selectedEventId}/>
+         <MaioresAnoWinnersInfo maioresAnoWinners={maioresAnoWinners} eventId={props.params.eventId}/>
       :
          <></>
       }

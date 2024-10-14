@@ -2,7 +2,7 @@ import eventsIds from '../../../domain/constants/eventsIds.js'
 import maioresService from '../../maioresService.js'
 import fs from 'fs'
 
-export default async function pipelineMaioresAno(championships, championshipsComps, people, ranksAverage, ranksSingle, peopleResults, competitions, championshipsResults){
+export default function pipelineMaioresAno(championships, championshipsComps, people, ranksAverage, ranksSingle, peopleResults, competitions, championshipsResults){
    console.log('Initializing MaioresAno update...')
 
    const today = new Date()

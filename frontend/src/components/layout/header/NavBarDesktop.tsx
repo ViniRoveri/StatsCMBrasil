@@ -5,7 +5,7 @@ const nav = `hidden items-center justify-between
 lg:flex`
 const navBarItem = `cursor-pointer px-6 text-center
 [&:not(:first-child)]:border-l
-hover:tracking-[2px]`
+hover:tracking-[1px]`
 
 export default function NavBarDesktop(){
    return (

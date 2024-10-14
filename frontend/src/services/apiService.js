@@ -11,6 +11,11 @@ const apiService = {
       return request.data
    },
 
+   async getMaioresCampeoesByEvent(event){
+      const request = await axiosApi.get(`campeoes/maiores/${event}.json`)
+      return request.data
+   },
+
    async getMaioresHistoriaByEvent(event){
       const request = await axiosApi.get(`maioresHistoria/${event}.json`)
       return request.data

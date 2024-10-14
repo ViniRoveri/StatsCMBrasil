@@ -9,7 +9,7 @@ type Props = {
 
 const linksItem = `mt-8`
 const linksItemTitle = `border-b cursor-pointer flex items-center justify-between
-hover:tracking-[2px]`
+hover:tracking-[1px]`
 const linksItemTitleIcon = `h-[20px]`
 
 export default function LinksSection(props: Props){

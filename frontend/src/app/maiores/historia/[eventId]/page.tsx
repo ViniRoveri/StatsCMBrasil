@@ -9,11 +9,10 @@ type Props = {
 }
 
 export default async function page(props: Props){
-   const selectedEventId = props.params.eventId
-   const selectedEventName = eventsInfos.find(e => e.id == selectedEventId)?.name
+   const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
 
    let maioresHistoriaData
-   if(selectedEventName) maioresHistoriaData = await apiService.getMaioresHistoriaByEvent(selectedEventId)
+   if(selectedEventName) maioresHistoriaData = await apiService.getMaioresHistoriaByEvent(props.params.eventId)
 
    return (
       <>

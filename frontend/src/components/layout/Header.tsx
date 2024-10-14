@@ -1,3 +1,4 @@
+import Link from "next/link"
 import NavBarDesktop from "./header/NavBarDesktop"
 import NavBarMobile from "./header/NavBarMobile"
 
@@ -10,9 +11,11 @@ export default function Header(){
    return (
       <section className={container}>
          <header className={header}>
-            <h1 className={title}>
-               Stats <span className="text-vr-green">C</span><span className="text-vr-yellow">M</span> <span className="text-vr-blue">B</span>rasil
-            </h1>
+            <Link href='/'>
+               <h1 className={title}>
+                  Stats <span className="text-vr-green">C</span><span className="text-vr-yellow">M</span> <span className="text-vr-blue">B</span>rasil
+               </h1>
+            </Link>
 
             <NavBarMobile/>
             <NavBarDesktop/>

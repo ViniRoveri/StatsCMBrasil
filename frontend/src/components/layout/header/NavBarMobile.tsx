@@ -9,7 +9,7 @@ const icon = `h-[40px]`
 const nav = `bg-vr-black border-l-4 fixed flex flex-col h-[calc(100vh_-_65px)] items-center left-0 overflow-y-scroll top-[65px] w-screen`
 const navBarItem = `cursor-pointer py-5 text-center w-4/5
 [&:not(:last-child)]:border-b
-hover:tracking-[2px]`
+hover:tracking-[1px]`
 
 export default function NavBarMobile(){
    const [isOpen, setIsOpen] = useState(false)

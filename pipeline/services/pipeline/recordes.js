@@ -1,7 +1,7 @@
 import fs from 'fs'
 import eventsIds from '../../domain/constants/eventsIds.js'
 
-export default async function pipelineRecordes(){
+export default function pipelineRecordes(){
    console.log('Starting Recordes pipepline...')
 
    const wcaExport = JSON.parse(
