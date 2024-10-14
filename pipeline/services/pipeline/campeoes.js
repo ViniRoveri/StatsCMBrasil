@@ -17,17 +17,15 @@ export default function pipelineCampeoes(){
       let maioresCampeoesOfEvent = []
 
       for(let championship of wcaExport.unfilteredChampionships){
-         const championshipWinnerResult = wcaExport.results.find(r => r.competitionId == championship.competition_id && r.eventId == event && r.roundTypeId == 'f' && r.pos == '1')
+         const brazillianFinalsResults = wcaExport.results.filter(r => r.competitionId == championship.competition_id && r.eventId == event && r.roundTypeId == 'f')
+         if(brazillianFinalsResults.length == 0) continue
+         const bestBrazillianResult = brazillianFinalsResults.sort((a, b) => a.pos - b.pos)[0]
 
-         if(!championshipWinnerResult) continue
-         
-         const person = wcaExport.people.find(p => p.id == championshipWinnerResult.personId)
-         const competition = wcaExport.competitions.find(c => c.id == championshipWinnerResult.competitionId)
-
+         const person = wcaExport.people.find(p => p.id == bestBrazillianResult.personId)
          if(!person) continue
+         const competition = wcaExport.competitions.find(c => c.id == bestBrazillianResult.competitionId)
 
          campeoesOfEvent.push({
-            competitionName: competition.name,
             personName: person.name,
             year: competition.year,
          })
@@ -41,6 +39,7 @@ export default function pipelineCampeoes(){
                nationalTitles: 0
             })
          }
+
          switch(championship.championship_type){
             case championshipTypes[0]:
                maioresCampeoesOfEvent.find(m => m.personId == person.id).nationalTitles += 1;

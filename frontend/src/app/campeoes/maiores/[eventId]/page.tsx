@@ -1,4 +1,4 @@
-import MaioresCampeoesInfo from "@/components/campeoes/MaioresCampeoesInfo"
+import MaiorCampeaoCard from "@/components/campeoes/MaiorCampeaoCard"
 import EventSelector from "@/components/global/EventSelector"
 import Title from "@/components/global/Title"
 import eventsInfos from "@/domain/constants/eventsInfos"
@@ -17,11 +17,13 @@ export default async function page(props: Props){
       <div className="max-w-[1000px] mx-auto">
          <Title>Maiores Campeões</Title>
 
-         <EventSelector baseUrl="/campeoes/maiores/" selectedEventName={props.params.eventId}/>
+         <EventSelector baseUrl="/campeoes/maiores/" selectedEventName={selectedEventName}/>
       </div>
 
       {selectedEventName ?
-         <MaioresCampeoesInfo maioresCampeoesOfEvent={maioresCampeoesOfEvent}/>
+         <>{maioresCampeoesOfEvent.map((campeaoData: any) => 
+            <MaiorCampeaoCard campeaoData={campeaoData} key={campeaoData.personId}/>
+         )}</>
          :
          <></>
       }
