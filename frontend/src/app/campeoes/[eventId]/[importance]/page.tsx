@@ -1,4 +1,5 @@
 import CampeaoCard from "@/components/campeoes/CampeaoCard"
+import ImportanceSelector from "@/components/campeoes/ImportanceSelector"
 import EventSelector from "@/components/global/EventSelector"
 import GoBackArrow from "@/components/global/GoBackArrow"
 import Title from "@/components/global/Title"
@@ -14,6 +15,9 @@ const campeoesInfo = `flex flex-col gap-4 items-center justify-center`
 export default async function page(props: Props){
    const campeoesOfEvent = await apiService.getCampeoesByEvent(props.params.eventId)
    const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
+   
+   let selectedCampeoesOfEvent = campeoesOfEvent.filter((c: any) => c.importance == props.params.importance)
+   if(selectedCampeoesOfEvent.length == 0) selectedCampeoesOfEvent = campeoesOfEvent
 
    return (
       <>
@@ -22,12 +26,16 @@ export default async function page(props: Props){
 
          <Title>Maiores Campeões</Title>
 
-         <EventSelector baseUrl="/campeoes/" selectedEventName={selectedEventName} extraUrl={`/${props.params.importance}`}/>
+         <div className="flex gap-6 items-center">
+            <EventSelector baseUrl="/campeoes/" selectedEventName={selectedEventName} extraUrl={`/${props.params.importance}`}/>
+
+            <ImportanceSelector baseUrl={`/campeoes/${props.params.eventId}`} selectedName={props.params.importance} usedOptions={campeoesOfEvent.map((c: any) => c.importance)}/>
+         </div>
       </div>
 
       {selectedEventName ?
          <section className={campeoesInfo}>
-            {campeoesOfEvent.map((campeaoData: any) => 
+            {selectedCampeoesOfEvent.map((campeaoData: any) => 
                <CampeaoCard campeaoData={campeaoData} key={campeaoData.personId}/>
             )}
          </section>

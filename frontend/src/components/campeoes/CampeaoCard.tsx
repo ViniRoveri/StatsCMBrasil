@@ -17,7 +17,7 @@ export default async function CampeaoCard(props: Props){
          <div className={image} style={{backgroundImage: `url(${personImageUrl})`}}/>
 
          <div className={info}>
-            <p className="font-title text-[28px]"></p>
+            <p className="font-title text-[28px]">{props.campeaoData.year}</p>
 
             <p className="font-bold text-[20px]">{props.campeaoData.personName}</p>
 

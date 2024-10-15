@@ -2,6 +2,12 @@ import fs from 'fs'
 import eventsIds from '../../domain/constants/eventsIds.js'
 import championshipTypes from '../../domain/constants/championshipTypes.js'
 
+function compareImportance(a, b){
+   if ( a.importance == 'Brasileiro' || b.importance == 'Mundial') return 1
+   if ( a.importance == 'Mundial' || b.importance == 'Brasileiro' ) return -1
+   return 0
+}
+
 function compareString(a, b){
    if ( a.personName < b.personName ) return -1
    if ( a.personName > b.personName ) return 1
@@ -81,7 +87,7 @@ export default function pipelineCampeoes(){
 
       campeoesOfEvent.sort((a, b) => 
          Number(b.year) - Number(a.year)
-         || championshipTypes.indexOf(b.importance) - championshipTypes.indexOf(a.importance) 
+         || compareImportance(a, b) 
       )
       maioresCampeoesOfEvent.sort((a, b) => 
          b.worldTitles - a.worldTitles 
