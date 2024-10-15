@@ -1,6 +1,6 @@
 import MaiorCampeaoCard from "@/components/campeoes/MaiorCampeaoCard"
 import EventSelector from "@/components/global/EventSelector"
-import GoBackArrow from "@/components/global/GoBackArrow"
+import GoAheadArrow from "@/components/global/GoAheadArrow"
 import Title from "@/components/global/Title"
 import eventsInfos from "@/domain/constants/eventsInfos"
 import apiService from "@/services/apiService"
@@ -18,7 +18,7 @@ export default async function page(props: Props){
    return (
       <>
       <div className="max-w-[1000px] mx-auto">
-         <GoBackArrow link={`/campeoes/${props.params.eventId}/all`} text="Ver campeões por ano"/>
+         <GoAheadArrow link={`/campeoes/${props.params.eventId}/Todos`} text="Ver campeões por ano"/>
 
          <Title>Maiores Campeões</Title>
 

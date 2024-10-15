@@ -1,7 +1,7 @@
 import CampeaoCard from "@/components/campeoes/CampeaoCard"
 import ImportanceSelector from "@/components/campeoes/ImportanceSelector"
 import EventSelector from "@/components/global/EventSelector"
-import GoBackArrow from "@/components/global/GoBackArrow"
+import GoAheadArrow from "@/components/global/GoAheadArrow"
 import Title from "@/components/global/Title"
 import eventsInfos from "@/domain/constants/eventsInfos"
 import apiService from "@/services/apiService"
@@ -22,9 +22,9 @@ export default async function page(props: Props){
    return (
       <>
       <div className="max-w-[1000px] mx-auto">
-         <GoBackArrow link={`/campeoes/maiores/${props.params.eventId}`} text="Ver maiores campeões"/>
+         <GoAheadArrow link={`/campeoes/maiores/${props.params.eventId}`} text="Ver maiores campeões"/>
 
-         <Title>Maiores Campeões</Title>
+         <Title>Campeões por Ano</Title>
 
          <div className="flex gap-6 items-center">
             <EventSelector baseUrl="/campeoes/" selectedEventName={selectedEventName} extraUrl={`/${props.params.importance}`}/>

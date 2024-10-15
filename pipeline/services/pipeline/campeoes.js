@@ -61,24 +61,24 @@ export default function pipelineCampeoes(){
             maioresCampeoesOfEvent.push({
                personId: person.id,
                personName: person.name,
-               worldTitles: 0,
-               continentalTitles: 0,
-               nationalTitles: 0
+               worldTitles: [],
+               continentalTitles: [],
+               nationalTitles: []
             })
          }
 
          switch(championship.championship_type){
             case championshipTypes[0]:
                campeaoOfEvent.importance = 'Brasileiro';
-               maioresCampeoesOfEvent.find(m => m.personId == person.id).nationalTitles += 1;
+               maioresCampeoesOfEvent.find(m => m.personId == person.id).nationalTitles.push(competition.year.slice(-2));
                break;
             case championshipTypes[1]:
                campeaoOfEvent.importance = 'Sul-Americano';
-               maioresCampeoesOfEvent.find(m => m.personId == person.id).continentalTitles += 1;
+               maioresCampeoesOfEvent.find(m => m.personId == person.id).continentalTitles.push(competition.year.slice(-2));
                break;
             case championshipTypes[2]:
                campeaoOfEvent.importance = 'Mundial';
-               maioresCampeoesOfEvent.find(m => m.personId == person.id).worldTitles += 1;
+               maioresCampeoesOfEvent.find(m => m.personId == person.id).worldTitles.push(competition.year.slice(-2));
                break;
          }
 

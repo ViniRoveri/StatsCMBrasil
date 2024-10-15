@@ -9,7 +9,7 @@ type Props = {
    usedOptions: string[]
 }
 
-const container = `cursor-pointer mb-8 relative text-[18px] w-[127px] z-20`
+const container = `cursor-pointer mb-8 relative text-[18px] w-[161px] z-20`
 const selectedText = `bg-vr-black border flex h-[44px] items-center justify-between px-2 rounded-t-[8px]`
 const icon = `w-[18px]`
 const options = `absolute bg-vr-black border flex flex-col left-0 rounded-b-[8px] top-[44px]`
@@ -37,7 +37,7 @@ export default function ImportanceSelector(props: Props){
    return (
       <div className={container} ref={containerElement}>
          <p className={`${selectedText} ${isOpen ? 'rounded-b-0' : 'rounded-b-[8px]'}`} onClick={() => setIsOpen(!isOpen)}>
-            {props.selectedName && importances.includes(props.selectedName) ? props.selectedName : '...'}
+            {props.selectedName && importances.includes(props.selectedName) ? props.selectedName : 'Todos'}
 
             {isOpen ?
                <ChevronUpIcon className={icon}/>
@@ -48,6 +48,9 @@ export default function ImportanceSelector(props: Props){
          
          {isOpen ?
             <div className={options} style={{width: 'inherit'}}>
+               <Link className={option} href={`${props.baseUrl}/all`}>
+                  Todos
+               </Link>
                {importances.map(i => {
                   return(
                      <Link className={option} href={`${props.baseUrl}/${i}`} key={i}>
