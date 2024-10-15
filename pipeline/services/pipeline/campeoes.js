@@ -45,11 +45,11 @@ export default function pipelineCampeoes(){
          const competition = wcaExport.competitions.find(c => c.id == championship.competition_id)
          const person = wcaExport.people.find(p => p.id == championResult.personId)
 
-         campeoesOfEvent.push({
-            importance: championship.championship_type,
+         let campeaoOfEvent = {
+            personId: person.id,
             personName: person.name,
-            year: competition.year,
-         })
+            year: competition.year
+         }
 
          if(!maioresCampeoesOfEvent.find(m => m.personId == person.id)){
             maioresCampeoesOfEvent.push({
@@ -63,15 +63,20 @@ export default function pipelineCampeoes(){
 
          switch(championship.championship_type){
             case championshipTypes[0]:
+               campeaoOfEvent.importance = 'Brasileiro';
                maioresCampeoesOfEvent.find(m => m.personId == person.id).nationalTitles += 1;
                break;
             case championshipTypes[1]:
+               campeaoOfEvent.importance = 'Sul-Americano';
                maioresCampeoesOfEvent.find(m => m.personId == person.id).continentalTitles += 1;
                break;
             case championshipTypes[2]:
+               campeaoOfEvent.importance = 'Mundial';
                maioresCampeoesOfEvent.find(m => m.personId == person.id).worldTitles += 1;
                break;
          }
+
+         campeoesOfEvent.push(campeaoOfEvent)
       }
 
       campeoesOfEvent.sort((a, b) => 

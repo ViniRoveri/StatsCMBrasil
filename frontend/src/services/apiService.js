@@ -1,6 +1,11 @@
 import axiosApi from '../domain/axiosInstances/axiosApi.ts'
 
 const apiService = {
+   async getCampeoesByEvent(event){
+      const request = await axiosApi.get(`campeoes/${event}.json`)
+      return request.data
+   },
+
    async getMaioresAnoWinners(){
       const request = await axiosApi.get('maioresAno/winners.json')
       return request.data

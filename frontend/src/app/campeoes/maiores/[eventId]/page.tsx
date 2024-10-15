@@ -18,7 +18,7 @@ export default async function page(props: Props){
    return (
       <>
       <div className="max-w-[1000px] mx-auto">
-         {/* <GoBackArrow link={`/campeoes/${props.params.eventId}/all`} text="Ver campeões por ano"/> */}
+         <GoBackArrow link={`/campeoes/${props.params.eventId}/all`} text="Ver campeões por ano"/>
 
          <Title>Maiores Campeões</Title>
 
