@@ -21,9 +21,11 @@ export default async function page(props: Props){
       </div>
 
       {selectedEventName ?
-         <>{maioresCampeoesOfEvent.map((campeaoData: any) => 
-            <MaiorCampeaoCard campeaoData={campeaoData} key={campeaoData.personId}/>
-         )}</>
+         <section className="flex flex-col gap-4 items-center justify-center">
+            {maioresCampeoesOfEvent.map((campeaoData: any) => 
+               <MaiorCampeaoCard campeaoData={campeaoData} key={campeaoData.personId}/>
+            )}
+         </section>
          :
          <></>
       }

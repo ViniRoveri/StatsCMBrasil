@@ -2,8 +2,6 @@ import fs from 'fs'
 import championshipTypes from '../../domain/constants/championshipTypes.js'
 import eventsIds from '../../domain/constants/eventsIds.js'
 import rl from 'node:readline'
-import { finished } from 'stream'
-import { promisify } from 'util'
 
 let championshipsIds = []
 let allPeopleIds = []
