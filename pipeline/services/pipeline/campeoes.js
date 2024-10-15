@@ -1,10 +1,11 @@
 import fs from 'fs'
 import eventsIds from '../../domain/constants/eventsIds.js'
 import championshipTypes from '../../domain/constants/championshipTypes.js'
+import titleImportances from '../../domain/constants/titleImportances.js'
 
 function compareImportance(a, b){
-   if ( a.importance == 'Brasileiro' || b.importance == 'Mundial') return 1
-   if ( a.importance == 'Mundial' || b.importance == 'Brasileiro' ) return -1
+   if ( a.importance == titleImportances[0] || b.importance == titleImportances[2] ) return 1
+   if ( a.importance == titleImportances[2] || b.importance == titleImportances[0] ) return -1
    return 0
 }
 
@@ -69,15 +70,15 @@ export default function pipelineCampeoes(){
 
          switch(championship.championship_type){
             case championshipTypes[0]:
-               campeaoOfEvent.importance = 'Brasileiro';
+               campeaoOfEvent.importance = titleImportances[0];
                maioresCampeoesOfEvent.find(m => m.personId == person.id).nationalTitles.push(competition.year);
                break;
             case championshipTypes[1]:
-               campeaoOfEvent.importance = 'Sul-Americano';
+               campeaoOfEvent.importance = titleImportances[1];
                maioresCampeoesOfEvent.find(m => m.personId == person.id).continentalTitles.push(competition.year);
                break;
             case championshipTypes[2]:
-               campeaoOfEvent.importance = 'Mundial';
+               campeaoOfEvent.importance = titleImportances[2];
                maioresCampeoesOfEvent.find(m => m.personId == person.id).worldTitles.push(competition.year);
                break;
          }

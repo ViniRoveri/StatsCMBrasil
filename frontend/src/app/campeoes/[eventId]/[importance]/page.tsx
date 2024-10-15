@@ -4,6 +4,7 @@ import EventSelector from "@/components/global/EventSelector"
 import GoAheadArrow from "@/components/global/GoAheadArrow"
 import Title from "@/components/global/Title"
 import eventsInfos from "@/domain/constants/eventsInfos"
+import titleImportances from "@/domain/constants/titleImportances"
 import apiService from "@/services/apiService"
 
 type Props = {
@@ -16,13 +17,13 @@ export default async function page(props: Props){
    const campeoesOfEvent = await apiService.getCampeoesByEvent(props.params.eventId)
    const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
    
-   let selectedCampeoesOfEvent = campeoesOfEvent.filter((c: any) => c.importance == props.params.importance)
-   if(selectedCampeoesOfEvent.length == 0) selectedCampeoesOfEvent = campeoesOfEvent
+   let selectedCampeoesOfEvent = campeoesOfEvent
+   if(titleImportances.includes(props.params.importance)) selectedCampeoesOfEvent = campeoesOfEvent.filter((c: any) => c.importance == props.params.importance)
 
    return (
       <>
       <div className="max-w-[1000px] mx-auto">
-         <GoAheadArrow link={`/campeoes/maiores/${props.params.eventId}`} text="Ver maiores campeões"/>
+         <GoAheadArrow link={`/campeoes/maiores/${props.params.eventId}/Todos`} text="Ver maiores campeões"/>
 
          <Title>Campeões por Ano</Title>
 

@@ -10,7 +10,7 @@ const homePageItems = [
       text: 'O ranking da atualidade sempre atualizado com quem vem dominando o cenário do esporte em cada categoria!'
    },
    {
-      url: '/campeoes/maiores/333',
+      url: '/campeoes/maiores/333/Todos',
       title: 'História dos Campeões', 
       text: 'Todos campeões que o cubo mágico brasileiro já teve em cada evento por competições importantes!'
    },

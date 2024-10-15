@@ -1,4 +1,5 @@
 'use client'
+import titleImportances from "@/domain/constants/titleImportances";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -18,7 +19,7 @@ const option = `px-4 py-3
 hover:bg-vr-yellow hover:text-vr-black`
 
 export default function ImportanceSelector(props: Props){
-   const importances = ['Brasileiro', 'Sul-Americano', 'Mundial'].filter(i => props.usedOptions.includes(i))
+   const importances = titleImportances.filter(i => props.usedOptions.includes(i))
 
    const [isOpen, setIsOpen] = useState(false)
    const containerElement = useRef<HTMLDivElement>(null)
@@ -48,7 +49,7 @@ export default function ImportanceSelector(props: Props){
          
          {isOpen ?
             <div className={options} style={{width: 'inherit'}}>
-               <Link className={option} href={`${props.baseUrl}/all`}>
+               <Link className={option} href={`${props.baseUrl}/Todos`}>
                   Todos
                </Link>
                {importances.map(i => {
