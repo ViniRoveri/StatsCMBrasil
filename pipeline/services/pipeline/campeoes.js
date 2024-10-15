@@ -70,15 +70,15 @@ export default function pipelineCampeoes(){
          switch(championship.championship_type){
             case championshipTypes[0]:
                campeaoOfEvent.importance = 'Brasileiro';
-               maioresCampeoesOfEvent.find(m => m.personId == person.id).nationalTitles.push(competition.year.slice(-2));
+               maioresCampeoesOfEvent.find(m => m.personId == person.id).nationalTitles.push(competition.year);
                break;
             case championshipTypes[1]:
                campeaoOfEvent.importance = 'Sul-Americano';
-               maioresCampeoesOfEvent.find(m => m.personId == person.id).continentalTitles.push(competition.year.slice(-2));
+               maioresCampeoesOfEvent.find(m => m.personId == person.id).continentalTitles.push(competition.year);
                break;
             case championshipTypes[2]:
                campeaoOfEvent.importance = 'Mundial';
-               maioresCampeoesOfEvent.find(m => m.personId == person.id).worldTitles.push(competition.year.slice(-2));
+               maioresCampeoesOfEvent.find(m => m.personId == person.id).worldTitles.push(competition.year);
                break;
          }
 
@@ -90,11 +90,16 @@ export default function pipelineCampeoes(){
          || compareImportance(a, b) 
       )
       maioresCampeoesOfEvent.sort((a, b) => 
-         b.worldTitles - a.worldTitles 
-         || b.continentalTitles - a.continentalTitles 
-         || b.nationalTitles - a.nationalTitles
+         b.worldTitles.length - a.worldTitles.length 
+         || b.continentalTitles.length - a.continentalTitles.length 
+         || b.nationalTitles.length - a.nationalTitles.length
          || compareString(a, b)
       )
+      maioresCampeoesOfEvent.forEach(m => {
+         m.worldTitles.sort((a, b) => Number(a) - Number(b))
+         m.continentalTitles.sort((a, b) => Number(a) - Number(b))
+         m.nationalTitles.sort((a, b) => Number(a) - Number(b))
+      })
 
       fs.writeFileSync(`./docs/campeoes/${event}.json`, JSON.stringify(campeoesOfEvent))
       fs.writeFileSync(`./docs/campeoes/maiores/${event}.json`, JSON.stringify(maioresCampeoesOfEvent))

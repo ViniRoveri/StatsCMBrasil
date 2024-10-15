@@ -1,8 +1,12 @@
-'use client'
 import navBarItems from "@/domain/constants/navBarItems"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
-import { useState } from "react"
+import { Dispatch, SetStateAction } from "react"
+
+type Props = {
+   isOpen: boolean
+   setIsOpen: Dispatch<SetStateAction<boolean>>
+}
 
 const container = `lg:hidden`
 const icon = `h-[40px]`
@@ -11,22 +15,20 @@ const navBarItem = `cursor-pointer py-5 text-center w-4/5
 [&:not(:last-child)]:border-b
 hover:tracking-[1px]`
 
-export default function NavBarMobile(){
-   const [isOpen, setIsOpen] = useState(false)
-
+export default function NavBarMobile(props: Props){
    return (
       <div className={container}>
-         <button onClick={() => setIsOpen(!isOpen)} type="button">
-            {isOpen ?
+         <button onClick={() => props.setIsOpen(!props.isOpen)} type="button">
+            {props.isOpen ?
                <XMarkIcon className={icon}/>
             :
                <Bars3Icon className={icon}/>
             }
          </button>
 
-         <nav className={nav} style={{transform: `${isOpen ? 'translateX(0)' : 'translateX(100vw)'}`}}>
+         <nav className={nav} style={{transform: `${props.isOpen ? 'translateX(0)' : 'translateX(100vw)'}`}}>
             {navBarItems.map(i => 
-               <Link className={navBarItem} href={i.url} key={i.text} onClick={() => setIsOpen(!isOpen)}>{i.text}</Link>
+               <Link className={navBarItem} href={i.url} key={i.text} onClick={() => props.setIsOpen(!props.isOpen)}>{i.text}</Link>
             )}
          </nav>
       </div>

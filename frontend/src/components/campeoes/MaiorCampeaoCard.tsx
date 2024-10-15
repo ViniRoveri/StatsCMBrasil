@@ -22,8 +22,8 @@ export default async function MaiorCampeaoCard(props: Props){
 
             <div className={titlesList}>
                <p className="font-bold">{props.campeaoData.worldTitles.length > 0 ? `${props.campeaoData.worldTitles.length}x Mundial (${props.campeaoData.worldTitles.join(", ")})` : ''}</p>
-               <p className="font-bold">{props.campeaoData.continentalTitles.length > 0 ? `${props.campeaoData.continentalTitles.length}x Sul-Americano (${props.campeaoData.worldTitles.join(", ")})` : ''}</p>
-               <p className="font-bold">{props.campeaoData.nationalTitles.length > 0 ? `${props.campeaoData.nationalTitles.length}x Brasileiro (${props.campeaoData.worldTitles.join(", ")})` : ''}</p>
+               <p className="font-bold">{props.campeaoData.continentalTitles.length > 0 ? `${props.campeaoData.continentalTitles.length}x Sul-Americano (${props.campeaoData.continentalTitles.join(", ")})` : ''}</p>
+               <p className="font-bold">{props.campeaoData.nationalTitles.length > 0 ? `${props.campeaoData.nationalTitles.length}x Brasileiro (${props.campeaoData.nationalTitles.join(", ")})` : ''}</p>
             </div>
          </div>
       </div>
