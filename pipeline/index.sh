@@ -8,3 +8,4 @@ unzip ./database/export.zip -d ./database
 node ./pipeline/services/pipeline/index.js
 
 rm -Rf ./database
+rm -Rf ./docs/wcaExport.json
