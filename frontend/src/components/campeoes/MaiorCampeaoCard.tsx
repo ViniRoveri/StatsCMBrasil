@@ -6,7 +6,7 @@ type Props = {
 
 const container = `border flex max-w-[525px] p-4 rounded-[20px] w-full`
 const image = `bg-center bg-cover bg-no-repeat border-[#FFD700] border-2 h-[100px] rounded-full w-[100px]`
-const info = `flex flex-col gap-4 grow justify-center px-4`
+const info = `flex flex-col gap-4 grow justify-center px-4 w-min`
 const titlesList = `text-[20px]`
 
 export default async function MaiorCampeaoCard(props: Props){

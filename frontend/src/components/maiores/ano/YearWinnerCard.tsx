@@ -11,7 +11,7 @@ type Props = {
 const container = `border flex max-w-[525px] p-4 rounded-[20px] w-full
 hover:scale-110`
 const image = `bg-center bg-cover bg-no-repeat border-[#FFD700] border-2 h-[100px] rounded-full w-[100px]`
-const info = `flex flex-col gap-4 grow justify-center px-4`
+const info = `flex flex-col gap-4 grow justify-center px-4 w-min`
 const yearInfo = `flex items-center justify-between`
 const personInfo = `flex flex-col gap-1 text-[20px]`
 
