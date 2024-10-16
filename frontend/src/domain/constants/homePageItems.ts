@@ -11,7 +11,7 @@ const homePageItems = [
    },
    {
       url: '/campeoes/maiores/333/Todos',
-      title: 'História dos Campeões', 
+      title: 'Hall dos Campeões', 
       text: 'Todos campeões que o cubo mágico brasileiro já teve em cada evento por competições importantes!'
    },
    {
