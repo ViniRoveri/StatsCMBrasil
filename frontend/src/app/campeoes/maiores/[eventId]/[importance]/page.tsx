@@ -6,6 +6,7 @@ import Title from "@/components/global/Title"
 import eventsInfos from "@/domain/constants/eventsInfos"
 import titleImportances from "@/domain/constants/titleImportances"
 import apiService from "@/services/apiService"
+import { redirect } from "next/navigation"
 
 type Props = {
    params: { eventId: string, importance: string }
@@ -37,6 +38,8 @@ export default async function page(props: Props){
    if(maioresCampeoesOfEvent.some((m: any) => m.nationalTitles.length > 0)) usedImportanceOptions.push(titleImportances[0])
    if(maioresCampeoesOfEvent.some((m: any) => m.continentalTitles.length > 0)) usedImportanceOptions.push(titleImportances[1])
    if(maioresCampeoesOfEvent.some((m: any) => m.worldTitles.length > 0)) usedImportanceOptions.push(titleImportances[2])
+
+   if(!usedImportanceOptions.includes(props.params.importance) && props.params.importance != 'Todos') redirect(`/campeoes/maiores/${props.params.eventId}/Todos`)
 
    return (
       <>
