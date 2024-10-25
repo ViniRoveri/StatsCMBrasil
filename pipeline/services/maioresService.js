@@ -189,7 +189,7 @@ const maioresService = {
 
          const peopleInFinalsIds = finalsResults.map(r => r.personId)
          for(let personInFinalsId of peopleInFinalsIds){
-            const personRankAverage = ranksAverage.find(r => r.personId == personInFinalsId)
+            const personRankAverage = ranksAverage.find(r => r.personId == personInFinalsId && r.eventId == eventId)
             
             if(personRankAverage){
                if(personRankAverage.countryRank <= 100){
