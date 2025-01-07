@@ -14,9 +14,15 @@ export default async function MaioresAnoWinnersInfo(props: Props){
       <section className={container}>
          {years.map(year => {
             const winner = props.maioresAnoWinners[year][props.eventId]
-            
+
             return (
-               <YearWinnerCard event={props.eventId} key={year} winner={winner} year={year}/>
+               <>
+               {winner ?
+                  <YearWinnerCard event={props.eventId} key={year} winner={winner} year={year}/>
+               :
+                  <></>
+               }
+               </>
             )
          })}
       </section>
