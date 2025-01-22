@@ -16,7 +16,7 @@ const linksUteisItems = [
    },
    {
       url: '/regraCalculoMaiores',
-      title: 'Regra de cálculo dos Maiores', 
+      title: 'Regra de cálculo de "Maiores"', 
       text: 'Como são feitos os cálculos do ranking de Maiores da História e Maiores do Ano aqui do site!'
    }
 ]
