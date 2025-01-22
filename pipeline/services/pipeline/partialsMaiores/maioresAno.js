@@ -11,6 +11,10 @@ export default function pipelineMaioresAno(championships, championshipsComps, pe
    let yearsToAdd = [String(currentYear)]
    if(considerLastYear) yearsToAdd.push(String(currentYear - 1))
    
+   let winnersJson = JSON.parse(
+      fs.readFileSync("./docs/maioresAno/winners.json")
+   )
+
    let winners = {}
    for(let year of yearsToAdd){
       const yearChampionshipsIds = championshipsComps.filter(c => c.year == year).map(c => c.id)
@@ -37,7 +41,8 @@ export default function pipelineMaioresAno(championships, championshipsComps, pe
 
          fs.writeFileSync(`./docs/maioresAno/${year}/${event}.json`, JSON.stringify(yearMaioresAnoData[event]))
       }
+      winnersJson[year] = winners[year]
    }
 
-   fs.writeFileSync('./docs/maioresAno/winners.json', JSON.stringify(winners))
+   fs.writeFileSync('./docs/maioresAno/winners.json', JSON.stringify(winnersJson))
 }
