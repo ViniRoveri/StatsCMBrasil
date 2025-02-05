@@ -162,7 +162,9 @@ const maioresService = {
          if(personData.totalPoints > 0) maioresOfEvent.push(personData)
       }
 
-      maioresOfEvent.sort((a, b) => b.totalPoints - a.totalPoints).forEach((m, i) => {m.position = i + 1})
+      maioresOfEvent
+      .sort((a, b) => b.totalPoints - a.totalPoints || b.championshipPoints - a.championshipPoints || b.recordPoints - a.recordPoints || b.averagePoints - a.averagePoints || b.singlePoints - a.singlePoints || a.personName.localeCompare(b.personName))
+      .forEach((m, i) => {m.position = i + 1})
 
       return maioresOfEvent
    },
