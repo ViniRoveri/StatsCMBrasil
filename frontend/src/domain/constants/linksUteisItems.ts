@@ -1,6 +1,6 @@
 const linksUteisItems = [
    {
-      url: 'https://www.worldcubeassociation.org/competitions?region=Brazil',
+      url: 'https://www.worldcubeassociation.org/competitions?region=BR',
       title: 'Próximas competições', 
       text: 'Todas competições que vão acontecer em breve no Brasil!'
    },
