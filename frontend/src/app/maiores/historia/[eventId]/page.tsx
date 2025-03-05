@@ -2,17 +2,17 @@ import EventSelector from "@/components/global/EventSelector";
 import Title from "@/components/global/Title";
 import MaioresHistoriaInfo from "@/components/maiores/historia/MaioresHistoriaInfo";
 import eventsInfos from "@/domain/constants/eventsInfos";
-import apiService from '@/services/apiService'
+import databaseService from '@/services/databaseService'
 
 type Props = {
    params: { eventId: string }
 }
 
-export default async function page(props: Props){
+export default function page(props: Props){
    const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
 
    let maioresHistoriaData
-   if(selectedEventName) maioresHistoriaData = await apiService.getMaioresHistoriaByEvent(props.params.eventId)
+   if(selectedEventName) maioresHistoriaData = databaseService.getMaioresHistoriaByEvent(props.params.eventId)
 
    return (
       <>

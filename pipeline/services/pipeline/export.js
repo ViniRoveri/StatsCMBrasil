@@ -133,7 +133,7 @@ export default async function pipelineExport(){
    wcaExport.people = wcaExport.people.filter(p => peopleInTop1000Ids.includes(p.id))
    wcaExport.championships = filterChampionships(wcaExport.unfilteredChampionships)
 
-   fs.writeFileSync('./docs/wcaExport.json', JSON.stringify(wcaExport))
+   fs.writeFileSync('./wcaExport.json', JSON.stringify(wcaExport))
 
    console.log('Export pipepline finished sucessfully!')
 }

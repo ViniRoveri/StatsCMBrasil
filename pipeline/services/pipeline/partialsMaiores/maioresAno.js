@@ -11,9 +11,12 @@ export default function pipelineMaioresAno(championships, championshipsComps, pe
    let yearsToAdd = [String(currentYear)]
    if(considerLastYear) yearsToAdd.push(String(currentYear - 1))
    
-   let winnersJson = JSON.parse(
-      fs.readFileSync("./docs/maioresAno/winners.json")
-   )
+   let winnersJson = {}
+   if(fs.existsSync("./frontend/src/database/maioresAno/winners.json")){
+      winnersJson = JSON.parse(
+         fs.readFileSync("./frontend/src/database/maioresAno/winners.json")
+      )
+   }
 
    let winners = {}
    for(let year of yearsToAdd){
@@ -32,17 +35,17 @@ export default function pipelineMaioresAno(championships, championshipsComps, pe
 
       const yearMaioresAnoData = maioresService.getAllMaiores(yearChampionships, ranksAverage, ranksSingle, yearResults, yearPeopleResults, people, idsPeopleWithResultThisYear)
 
-      if(!fs.existsSync('./docs/maioresAno')) fs.mkdirSync('./docs/maioresAno')
-      if(!fs.existsSync(`./docs/maioresAno/${year}`)) fs.mkdirSync(`./docs/maioresAno/${year}`)
+      if(!fs.existsSync('./frontend/src/database/maioresAno')) fs.mkdirSync('./frontend/src/database/maioresAno')
+      if(!fs.existsSync(`./frontend/src/database/maioresAno/${year}`)) fs.mkdirSync(`./frontend/src/database/maioresAno/${year}`)
 
       winners[year] = {}
       for(let event of eventsIds){
          winners[year][event] = yearMaioresAnoData[event][0]
 
-         fs.writeFileSync(`./docs/maioresAno/${year}/${event}.json`, JSON.stringify(yearMaioresAnoData[event]))
+         fs.writeFileSync(`./frontend/src/database/maioresAno/${year}/${event}.json`, JSON.stringify(yearMaioresAnoData[event]))
       }
       winnersJson[year] = winners[year]
    }
 
-   fs.writeFileSync('./docs/maioresAno/winners.json', JSON.stringify(winnersJson))
+   fs.writeFileSync('./frontend/src/database/maioresAno/winners.json', JSON.stringify(winnersJson))
 }

@@ -7,10 +7,9 @@ export default function pipelineMaioresHistoria(championships, people, ranksAver
 
    const allMaioresHistoriaData = maioresService.getAllMaiores(championships, ranksAverage, ranksSingle, results, peopleResults, people)
 
-
-   if(!fs.existsSync('./docs/maioresHistoria')) fs.mkdirSync('./docs/maioresHistoria')
+   if(!fs.existsSync('./frontend/src/database/maioresHistoria')) fs.mkdirSync('./frontend/src/database/maioresHistoria')
 
    for(let event of eventsIds){
-      fs.writeFileSync(`./docs/maioresHistoria/${event}.json`, JSON.stringify(allMaioresHistoriaData[event]))
+      fs.writeFileSync(`./frontend/src/database/maioresHistoria/${event}.json`, JSON.stringify(allMaioresHistoriaData[event]))
    }
 }

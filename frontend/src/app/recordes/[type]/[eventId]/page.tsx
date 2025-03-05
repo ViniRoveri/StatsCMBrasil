@@ -3,7 +3,7 @@ import ResultTypeSelector from "@/components/global/ResultTypeSelector";
 import Title from "@/components/global/Title";
 import RecordesInfo from "@/components/recordes/RecordesInfo";
 import eventsInfos from "@/domain/constants/eventsInfos";
-import apiService from '@/services/apiService'
+import databaseService from '@/services/databaseService'
 
 type Props = {
    params: { 
@@ -12,13 +12,13 @@ type Props = {
    }
 }
 
-export default async function page(props: Props){
+export default function page(props: Props){
    const selectedResultType = props.params.type
    const selectedEventId = props.params.eventId
    const selectedEventName = eventsInfos.find(e => e.id == selectedEventId)?.name
 
    let recordesData
-   if(selectedEventName) recordesData = await apiService.getRecordesByTypeAndEvent(selectedResultType, selectedEventId)
+   if(selectedEventName) recordesData = databaseService.getRecordesByTypeAndEvent(selectedResultType, selectedEventId)
 
    return (
       <>

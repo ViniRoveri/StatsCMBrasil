@@ -6,7 +6,7 @@ export default function pipelineMaiores(){
    console.log('Starting Maiores pipepline...')
 
    const wcaExport = JSON.parse(
-      fs.readFileSync("./docs/wcaExport.json")
+      fs.readFileSync("./wcaExport.json")
    )
 
    const championships = wcaExport.championships

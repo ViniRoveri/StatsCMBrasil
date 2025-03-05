@@ -19,11 +19,11 @@ export default function pipelineCampeoes(){
    console.log('Starting Campeoes pipepline...')
 
    const wcaExport = JSON.parse(
-      fs.readFileSync("./docs/wcaExport.json")
+      fs.readFileSync("./wcaExport.json")
    )
 
-   if(!fs.existsSync('./docs/campeoes')) fs.mkdirSync('./docs/campeoes')
-   if(!fs.existsSync('./docs/campeoes/maiores')) fs.mkdirSync('./docs/campeoes/maiores')
+   if(!fs.existsSync('./frontend/src/database/campeoes')) fs.mkdirSync('./frontend/src/database/campeoes')
+   if(!fs.existsSync('./frontend/src/database/campeoes/maiores')) fs.mkdirSync('./frontend/src/database/campeoes/maiores')
 
    const peopleIds = wcaExport.people.map(p => p.id)
 
@@ -102,8 +102,8 @@ export default function pipelineCampeoes(){
          m.nationalTitles.sort((a, b) => Number(a) - Number(b))
       })
 
-      fs.writeFileSync(`./docs/campeoes/${event}.json`, JSON.stringify(campeoesOfEvent))
-      fs.writeFileSync(`./docs/campeoes/maiores/${event}.json`, JSON.stringify(maioresCampeoesOfEvent))
+      fs.writeFileSync(`./frontend/src/database/campeoes/${event}.json`, JSON.stringify(campeoesOfEvent))
+      fs.writeFileSync(`./frontend/src/database/campeoes/maiores/${event}.json`, JSON.stringify(maioresCampeoesOfEvent))
    }
 
    console.log('Campeoes pipeline finished sucessfully!')

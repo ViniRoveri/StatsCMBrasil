@@ -5,7 +5,7 @@ export default function pipelineRecordes(){
    console.log('Starting Recordes pipepline...')
 
    const wcaExport = JSON.parse(
-      fs.readFileSync("./docs/wcaExport.json")
+      fs.readFileSync("./wcaExport.json")
    )
 
    const people = wcaExport.people
@@ -33,16 +33,16 @@ export default function pipelineRecordes(){
       if(result.regionalSingleRecord != 'NULL') singleRecords[result.eventId].push(result)
    }
 
-   if(!fs.existsSync('./docs/recordes')) fs.mkdirSync('./docs/recordes')
-   if(!fs.existsSync('./docs/recordes/average')) fs.mkdirSync('./docs/recordes/average')
-   if(!fs.existsSync('./docs/recordes/single')) fs.mkdirSync('./docs/recordes/single')
+   if(!fs.existsSync('./frontend/src/database/recordes')) fs.mkdirSync('./frontend/src/database/recordes')
+   if(!fs.existsSync('./frontend/src/database/recordes/average')) fs.mkdirSync('./frontend/src/database/recordes/average')
+   if(!fs.existsSync('./frontend/src/database/recordes/single')) fs.mkdirSync('./frontend/src/database/recordes/single')
 
    for(let event of eventsIds){
       averageRecords[event].reverse()
-      fs.writeFileSync(`./docs/recordes/average/${event}.json`, JSON.stringify(averageRecords[event]))
+      fs.writeFileSync(`./frontend/src/database/recordes/average/${event}.json`, JSON.stringify(averageRecords[event]))
 
       singleRecords[event].reverse()
-      fs.writeFileSync(`./docs/recordes/single/${event}.json`, JSON.stringify(singleRecords[event]))
+      fs.writeFileSync(`./frontend/src/database/recordes/single/${event}.json`, JSON.stringify(singleRecords[event]))
    }
    
    console.log('Recordes pipeline finished sucessfully!')

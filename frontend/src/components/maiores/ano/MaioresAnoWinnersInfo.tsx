@@ -7,7 +7,7 @@ type Props = {
 
 const container = `flex flex-col gap-6 items-center`
 
-export default async function MaioresAnoWinnersInfo(props: Props){
+export default function MaioresAnoWinnersInfo(props: Props){
    const years = Object.keys(props.maioresAnoWinners).reverse()
 
    return (

@@ -5,7 +5,7 @@ import GoAheadArrow from "@/components/global/GoAheadArrow"
 import Title from "@/components/global/Title"
 import eventsInfos from "@/domain/constants/eventsInfos"
 import titleImportances from "@/domain/constants/titleImportances"
-import apiService from "@/services/apiService"
+import databaseService from "@/services/databaseService"
 import { redirect } from "next/navigation"
 
 type Props = {
@@ -14,8 +14,8 @@ type Props = {
 
 const maioresCampeoesInfo = `flex flex-col gap-4 items-center justify-center`
 
-export default async function page(props: Props){
-   const maioresCampeoesOfEvent = await apiService.getMaioresCampeoesByEvent(props.params.eventId)
+export default function page(props: Props){
+   const maioresCampeoesOfEvent = databaseService.getMaioresCampeoesByEvent(props.params.eventId)
    const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
 
    let selectedMaioresCampeoesOfEvent = maioresCampeoesOfEvent

@@ -3,7 +3,7 @@ import GoBackArrow from "@/components/global/GoBackArrow";
 import Title from "@/components/global/Title";
 import MaioresAnoInfo from "@/components/maiores/ano/MaioresAnoInfo";
 import eventsInfos from "@/domain/constants/eventsInfos";
-import apiService from '@/services/apiService'
+import databaseService from '@/services/databaseService'
 
 type Props = {
    params: { 
@@ -12,13 +12,13 @@ type Props = {
    }
 }
 
-export default async function page(props: Props){
+export default function page(props: Props){
    const selectedYear = props.params.year
    const selectedEventId = props.params.eventId
    const selectedEventName = eventsInfos.find(e => e.id == selectedEventId)?.name
 
    let maioresAnoData
-   if(selectedEventName) maioresAnoData = await apiService.getMaioresAnoByYearAndEvent(selectedYear, selectedEventId)
+   if(selectedEventName) maioresAnoData = databaseService.getMaioresAnoByYearAndEvent(selectedYear, selectedEventId)
 
    return (
       <>
