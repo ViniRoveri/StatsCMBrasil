@@ -21,7 +21,7 @@ export default function pipelineMaiores(){
    const ranksAverage = wcaExport.ranksAverage
    const ranksSingle = wcaExport.ranksSingle
 
-   const championshipsResults = wcaExport.results.filter(r => championshipsIds.includes(r.competitionId) && r.roundTypeId == 'f')
+   const championshipsResults = wcaExport.results.filter(r => championshipsIds.includes(r.competitionId) && (r.roundTypeId == 'f' || r.roundTypeId == 'c'))
    const peopleResults = wcaExport.results.filter(r => peopleIds.includes(r.personId))
 
    pipelineMaioresHistoria(championships, people, ranksAverage, ranksSingle, championshipsResults, peopleResults)

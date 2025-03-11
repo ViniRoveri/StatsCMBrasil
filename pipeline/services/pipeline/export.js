@@ -60,7 +60,7 @@ async function getTableJson(tableName){
                }; break;
             case 'Results':
                if(eventsIds.includes(row[1]) && 
-                  (allPeopleIds.includes(row[7]) || (championshipsIds.includes(row[0]) && row[2] == 'f'))
+                  (allPeopleIds.includes(row[7]) || (championshipsIds.includes(row[0]) && (row[2] == 'f' || row[2] == 'c')))
                ){
                   tableJson.push({
                      competitionId: row[0],

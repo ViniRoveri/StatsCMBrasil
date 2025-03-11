@@ -35,13 +35,13 @@ export default function pipelineCampeoes(){
          let championResult
 
          if(championship.championship_type == championshipTypes[0]){
-            const brazillianFinalsResults = wcaExport.results.filter(r => r.competitionId == championship.competition_id && r.eventId == event && r.roundTypeId == 'f' && peopleIds.includes(r.personId))
+            const brazillianFinalsResults = wcaExport.results.filter(r => r.competitionId == championship.competition_id && r.eventId == event && (r.roundTypeId == 'f' || r.roundTypeId == 'c') && peopleIds.includes(r.personId))
             if(brazillianFinalsResults.length == 0) continue
             const bestBrazillianResult = brazillianFinalsResults.sort((a, b) => Number(a.pos) - Number(b.pos))[0]
             
             championResult = bestBrazillianResult
          }else{
-            const winnerResult = wcaExport.results.find(r => r.competitionId == championship.competition_id && r.eventId == event && r.roundTypeId == 'f' && r.pos == '1')
+            const winnerResult = wcaExport.results.find(r => r.competitionId == championship.competition_id && r.eventId == event && (r.roundTypeId == 'f' || r.roundTypeId == 'c') && r.pos == '1')
             if(!winnerResult) continue
             const winnerIsBrazillian = peopleIds.includes(winnerResult.personId)
             if(!winnerIsBrazillian) continue
