@@ -3,6 +3,8 @@ import $ from 'jquery'
 type Props = {
    id: string
    onBlur: Function
+
+   onlyNumbers?: boolean
    width?: number
 }
 
@@ -12,12 +14,39 @@ export default function TimeInput(props: Props){
    function blockNonNumbers(){
       const value = $(`#${props.id}`).val() as string
 
-      $(`#${props.id}`).val(value.replaceAll(/\D/g, ''))
+      if(props.onlyNumbers){
+         $(`#${props.id}`).val(
+            value.replace(/\D/g, '')
+         )
+         return
+      }
+
+      const startsWithNumber = /^\d/g.test(value)
+      const startsWithLetter = /^\D/g.test(value)
+
+      if(startsWithNumber){
+         $(`#${props.id}`).val(
+            value.replace(/\D/g, '')
+         )
+      }else if(startsWithLetter){
+         const lowercaseValue = value.toLowerCase()
+
+         if(lowercaseValue != 'd' && lowercaseValue != 'dn' && lowercaseValue != 'dnf'){
+            $(`#${props.id}`).val(
+               value.replace(/.$/g, '')
+            )
+         }
+      }
    }
 
    function fixInvalidTime(){
       const value = $(`#${props.id}`).val() as string
-      
+
+      if(/\D/g.test(value)){
+         $(`#${props.id}`).val('DNF')
+         return
+      }
+
       if(!value) {
          $(`#${props.id}`).val('')
          return

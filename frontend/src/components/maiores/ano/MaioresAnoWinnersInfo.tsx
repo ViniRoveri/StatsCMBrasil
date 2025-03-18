@@ -16,13 +16,13 @@ export default function MaioresAnoWinnersInfo(props: Props){
             const winner = props.maioresAnoWinners[year][props.eventId]
 
             return (
-               <>
+               <div key={year}>
                {winner ?
                   <YearWinnerCard event={props.eventId} key={year} winner={winner} year={year}/>
                :
                   <></>
                }
-               </>
+               </div>
             )
          })}
       </section>

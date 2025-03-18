@@ -19,7 +19,7 @@ export default function Table(props: Props){
             <thead>
                <tr>
                   {props.headers.map((header, headerI) =>
-                     <th className={`${th} ${headerI == 0 ? 'left-0 sticky' : ''}`} key={header}>{header}</th>
+                     <th className={`${th} ${headerI == 0 && !props.notFixed ? 'left-0 sticky' : ''}`} key={header}>{header}</th>
                   )}
                </tr>
             </thead>
