@@ -1,6 +1,8 @@
 type Props = {
    headers: string[]
-   rows: string[][]
+   rows: any[][]
+
+   notFixed?: boolean
 }
 
 const container = `overflow-x-scroll`
@@ -34,7 +36,7 @@ export default function Table(props: Props){
                         }
                         
                         return(
-                           <td className={`${td} ${padding} ${infoI == 0 ? 'left-0 sticky' : ''}`} key={`${info} ${infoI}`}>
+                           <td className={`${td} ${padding} ${infoI == 0 && !props.notFixed ? 'left-0 sticky' : ''}`} key={`${info} ${infoI}`}>
                               {info}
                            </td>
                         )

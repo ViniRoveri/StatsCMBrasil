@@ -15,6 +15,11 @@ const linksUteisItems = [
       text: 'O ranking atual dos resultados do Brasil oficial da WCA!'
    },
    {
+      url: '/calculadoraHeadToHead',
+      title: 'Calculadora para Head to Head', 
+      text: 'Calculadora automática para médias e metas em rounds Head to Head!'
+   },
+   {
       url: '/regraCalculoMaiores',
       title: 'Regra de cálculo de "Maiores"', 
       text: 'Como são feitos os cálculos do ranking de Maiores da História e Maiores do Ano aqui do site!'
