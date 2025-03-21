@@ -229,7 +229,7 @@ export default function CompetitorTable(props: Props){
    }, [props.currentWinningAvg])
 
    return (
-      <form className={container} autoComplete="off">
+      <form autoComplete="off" className={container}>
          <div className={containerCompetitorName}>
             <input className={competitorName} maxLength={50} placeholder='Nome do Competidor'/>
          </div>

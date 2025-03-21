@@ -12,7 +12,7 @@ const inputContainer = `border py-2 rounded-lg text-[20px]`
 
 export default function CurrentWinningAverage(props: Props){
    return (
-      <div className={container}>
+      <form autoComplete="off" className={container}>
          <label className={text}>Atual média vencedora:</label>
 
          <div className={inputContainer}>
@@ -22,6 +22,6 @@ export default function CurrentWinningAverage(props: Props){
                )
             } onlyNumbers={true}/>
          </div>
-      </div>
+      </form>
    )
 }

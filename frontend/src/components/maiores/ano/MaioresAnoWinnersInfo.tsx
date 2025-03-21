@@ -5,7 +5,8 @@ type Props = {
    maioresAnoWinners: any
 }
 
-const container = `flex flex-col gap-6 items-center`
+const container = `flex flex-col gap-6 items-center justify-center`
+const cardContainer = `max-w-[525px] w-full`
 
 export default function MaioresAnoWinnersInfo(props: Props){
    const years = Object.keys(props.maioresAnoWinners).reverse()
@@ -16,7 +17,7 @@ export default function MaioresAnoWinnersInfo(props: Props){
             const winner = props.maioresAnoWinners[year][props.eventId]
 
             return (
-               <div key={year}>
+               <div className={cardContainer} key={year}>
                {winner ?
                   <YearWinnerCard event={props.eventId} key={year} winner={winner} year={year}/>
                :
