@@ -72,7 +72,7 @@ export default function TimeInput(props: Props){
       var newValue = ''
       
       if(minutes > 0){
-         newValue = `${minutes}:${seconds}.${value.slice(-2)}`
+         newValue = `${minutes}:${seconds.toString().padStart(2, '0')}.${value.slice(-2)}`
       }else if (seconds > 0){
          newValue = `${seconds}.${value.slice(-2)}`
       }else{

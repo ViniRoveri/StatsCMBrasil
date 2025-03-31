@@ -190,11 +190,10 @@ export default function CompetitorTable(props: Props){
       if(time >= 60){
          const minutes = Math.floor(time / 60)
          const leftoverSeconds = time - (60 * minutes)
-
-         return `${minutes}:${leftoverSeconds}`
+         return `${minutes}:${leftoverSeconds.toFixed(2).toString().padStart(5, '0')}`
       }
 
-      return String(seconds)
+      return seconds.toString()
    }
 
    function unformatTime(timeString: string){
