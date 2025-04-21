@@ -50,36 +50,36 @@ async function getTableJson(tableName){
                   championshipsIds.push(row[1])
                }; break;
             case 'Persons':
-               if(row[2] == 'Brazil'){
+               if(row[4] == 'Brazil'){
                   tableJson.push({
-                     name: row[1],
-                     id: row[4] 
+                     name: row[0],
+                     id: row[2] 
                   })
-   
-                  allPeopleIds.push(row[4])
+
+                  allPeopleIds.push(row[2])
                }; break;
             case 'Results':
-               if(eventsIds.includes(row[1]) && 
-                  (allPeopleIds.includes(row[7]) || (championshipsIds.includes(row[0]) && (row[2] == 'f' || row[2] == 'c')))
+               if(eventsIds.includes(row[9]) && 
+                  (allPeopleIds.includes(row[12]) || (championshipsIds.includes(row[8]) && (row[10] == 'f' || row[10] == 'c')))
                ){
                   tableJson.push({
-                     competitionId: row[0],
-                     eventId: row[1],
-                     roundTypeId: row[2],
-                     pos: row[3],
-                     best: row[4],
-                     average: row[5],
-                     personId: row[7],
-                     value1: row[9],
-                     value2: row[10],
-                     value3: row[11],
-                     value4: row[12],
-                     value5: row[13],
+                     pos: row[0],
+                     best: row[1],
+                     average: row[2],
+                     value1: row[3],
+                     value2: row[4],
+                     value3: row[5],
+                     value4: row[6],
+                     value5: row[7],
+                     competitionId: row[8],
+                     eventId: row[9],
+                     roundTypeId: row[10],
+                     personId: row[12],
                      regionalSingleRecord: row[14],
                      regionalAverageRecord: row[15]
                   })
    
-                  resultsCompetitionsIds.push(row[0])
+                  resultsCompetitionsIds.push(row[8])
                }; break;
             case 'Competitions':
                if(championshipsIds.includes(row[0]) || resultsCompetitionsIds.includes(row[0])){
@@ -90,26 +90,26 @@ async function getTableJson(tableName){
                   })
                }; break;
             case 'RanksAverage':
-               if(allPeopleIds.includes(row[0]) && eventsIds.includes(row[1]) && Number(row[5]) < 1000){
+               if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2]) && Number(row[5]) < 1000){
                   tableJson.push({
-                     personId: row[0],
-                     eventId: row[1],
-                     best: row[2],
+                     best: row[0],
+                     personId: row[1],
+                     eventId: row[2],
                      countryRank: row[5]
                   })
    
-                  peopleInTop1000Ids.push(row[0])
+                  peopleInTop1000Ids.push(row[1])
                }; break;
             case 'RanksSingle':
-               if(allPeopleIds.includes(row[0]) && eventsIds.includes(row[1]) && Number(row[5]) < 1000){
+               if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2]) && Number(row[5]) < 1000){
                   tableJson.push({
-                     personId: row[0],
-                     eventId: row[1],
-                     best: row[2],
+                     best: row[0],
+                     personId: row[1],
+                     eventId: row[2],
                      countryRank: row[5]
                   })
    
-                  peopleInTop1000Ids.push(row[0])
+                  peopleInTop1000Ids.push(row[1])
                }; break;
          }
       })
