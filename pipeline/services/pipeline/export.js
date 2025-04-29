@@ -7,7 +7,7 @@ let championshipsIds = []
 let allPeopleIds = []
 let resultsCompetitionsIds = []
 let peopleInTop1000Ids = []
-let yearsWithResults = []
+let latestYearWithResult = 0
 
 function filterChampionships(championships){
    let filteredChampionships = []
@@ -90,7 +90,7 @@ async function getTableJson(tableName){
                      year: row[16]
                   })
 
-                  if(resultsCompetitionsIds.includes(row[0]) && !yearsWithResults.includes(row[16])) yearsWithResults.push(row[16])
+                  if(resultsCompetitionsIds.includes(row[0]) && Number(row[16]) > latestYearWithResult) latestYearWithResult = Number(row[16])
                }; break;
             case 'RanksAverage':
                if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2]) && Number(row[5]) < 1000){
@@ -137,7 +137,7 @@ export default async function pipelineExport(){
    wcaExport.championships = filterChampionships(wcaExport.unfilteredChampionships)
 
    const today = new Date()
-   wcaExport.resultsAreComplete = yearsWithResults.includes(today.getFullYear().toString())
+   wcaExport.resultsAreComplete = latestYearWithResult >= today.getFullYear()
 
    fs.writeFileSync('./wcaExport.json', JSON.stringify(wcaExport))
 
