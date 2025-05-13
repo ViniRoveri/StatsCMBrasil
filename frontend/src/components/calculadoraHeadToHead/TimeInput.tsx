@@ -14,6 +14,13 @@ export default function TimeInput(props: Props){
    function blockNonNumbers(){
       const value = $(`#${props.id}`).val() as string
 
+      if(value[0] == '0'){
+         $(`#${props.id}`).val(
+            value.replace('0', '')
+         )
+         return
+      }
+
       if(props.onlyNumbers){
          $(`#${props.id}`).val(
             value.replace(/\D/g, '')

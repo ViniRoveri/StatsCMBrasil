@@ -145,7 +145,7 @@ export default function CompetitorTable(props: Props){
          currentSum += time
       }
 
-      if(currentSum > targetSum){
+      if(times.length == 4 && currentSum > targetSum){
          setToWin('N/P')
          return
       }
