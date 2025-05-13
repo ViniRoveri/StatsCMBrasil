@@ -152,17 +152,20 @@ export default function CompetitorTable(props: Props){
 
       const necessaryTimeString = (targetSum - currentSum + 0.01).toFixed(2)
       const necessaryTime = Number(necessaryTimeString)
+      const bestTime = sortedTimes[0]
+      const worstTime = sortedTimes[sortedTimes.length - 1]
       if(times.length == 3){
-         setToWin(
-            formatTime(necessaryTime)
-         )
+         if(typeof bestTime != 'string' && necessaryTime < bestTime){
+            setToWin("-")
+         }else{
+            setToWin(
+               formatTime(necessaryTime)
+            )
+         }
       }else{
-         const firstTime = sortedTimes[0]
-         const lastTime = sortedTimes[sortedTimes.length - 1]
-
-         if(typeof firstTime != 'string' && necessaryTime < firstTime){
+         if(typeof bestTime != 'string' && necessaryTime < bestTime){
             setToWin('N/P')
-         }else if(typeof lastTime != 'string' && necessaryTime >= lastTime){
+         }else if(typeof worstTime != 'string' && necessaryTime >= worstTime){
             setToWin('W')
          }else{
             setToWin(
