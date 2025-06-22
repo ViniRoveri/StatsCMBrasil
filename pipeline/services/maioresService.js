@@ -40,7 +40,7 @@ const maioresService = {
                case championshipTypes[1]:
                   championshipWeight = 2; break;
                case championshipTypes[2]:
-                  championshipWeight = 6; break;
+                  championshipWeight = 10; break;
             }
 
             if(Number(result.best) > 0){
@@ -71,7 +71,7 @@ const maioresService = {
                case recordTypes[1]:
                   averageRecordsPoints += 2; break;
                case recordTypes[2]:
-                  averageRecordsPoints += 6; break;
+                  averageRecordsPoints += 10; break;
             }
          }
 
@@ -82,7 +82,7 @@ const maioresService = {
                case recordTypes[1]:
                   singleRecordsPoints += 2; break;
                case recordTypes[2]:
-                  singleRecordsPoints += 6; break;
+                  singleRecordsPoints += 10; break;
             }
          }
       }

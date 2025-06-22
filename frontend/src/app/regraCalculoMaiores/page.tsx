@@ -24,7 +24,7 @@ export default function page(){
             <p>Para cada competição são adicionados pontos da seguinte forma:</p>
             <p>- Pontos de colocação: 25 - Colocação final na competição.</p>
             <p>- Bônus de pódium: Para terceiro lugar 2 pontos, para segundo lugar 4 pontos e para campeão 10 pontos.</p>
-            <p>- Peso da competição: Para Brasileiro 1 ponto, para Sul-Americano 2 pontos e para Mundial 6 pontos.</p>
+            <p>- Peso da competição: Para Brasileiro 1 ponto, para Sul-Americano 2 pontos e para Mundial 10 pontos.</p>
             <p>- Formula final: (Pontos de colocação + Bônus de pódium) * Peso da competição</p>
             <p>- Por fim o resultado da formula final é adicionado ao total de Pontos de Competições.</p>
          </div>
@@ -34,7 +34,7 @@ export default function page(){
             <p>São considerados os recordes nacionais, continentais e mundiais no evento.</p>
             <p>Para cada recorde são adicionados pontos da seguinte forma:</p>
             <p>- Pontos de Recordes de Médias e Pontos de Recordes de Singles são somados separadamente.</p>
-            <p>- Para recordes nacionais 1 ponto, para continentais 2 pontos e para mundiais 6 pontos.</p>
+            <p>- Para recordes nacionais 1 ponto, para continentais 2 pontos e para mundiais 10 pontos.</p>
             <p>- Formula final: (Pontos de Recordes de Médias * 3) + Pontos de Recordes de Singles</p>
             <p>- Por fim o resultado da formula final é adicionado ao total de Pontos de Recordes.</p>
          </div>
