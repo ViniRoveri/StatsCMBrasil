@@ -1,6 +1,6 @@
 const homePageItems = [
    {
-      url: '/maiores/historia/333',
+      url: '/maiores/historia/geral',
       title: 'Maiores da História', 
       text: 'Os rankings de maiores da história de cada categoria, baseado em cálculos sobre resultados, recordes, e performances em campeonatos!'
    },

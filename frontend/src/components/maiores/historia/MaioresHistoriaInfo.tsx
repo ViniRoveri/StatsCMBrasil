@@ -1,6 +1,7 @@
 import Podium from "@/components/global/Podium"
 import Table from "@/components/global/Table"
 import utilityService from '@/services/utilityService'
+import Link from "next/link"
 
 type Props = {
    maioresHistoriaEventData: any[]
@@ -19,12 +20,12 @@ export default async function MaioresHistoriaInfo(props: Props){
          headers={['#', 'Nome', 'Pontos Totais', 'Pts. Campeonatos', 'Pts. Recordes', 'Pts. Médias', 'Pts. Singles']}
          rows={props.maioresHistoriaEventData.map(personData => [
             personData.position,
-            personData.personName,
-            personData.totalPoints,
-            personData.championshipPoints,
-            personData.recordPoints,
-            personData.averagePoints,
-            personData.singlePoints
+            <Link className="hover:underline" href={`https://www.worldcubeassociation.org/persons/${personData.personId}`} target="_blank">{personData.personName}</Link>,,
+            utilityService.formatNumber(personData.totalPoints),
+            utilityService.formatNumber(personData.championshipPoints),
+            utilityService.formatNumber(personData.recordPoints),
+            utilityService.formatNumber(personData.averagePoints),
+            utilityService.formatNumber(personData.singlePoints)
          ])}
       />
       </>

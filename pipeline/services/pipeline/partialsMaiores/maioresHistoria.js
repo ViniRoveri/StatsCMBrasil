@@ -12,4 +12,7 @@ export default function pipelineMaioresHistoria(championships, people, ranksAver
    for(let event of eventsIds){
       fs.writeFileSync(`./frontend/src/database/maioresHistoria/${event}.json`, JSON.stringify(allMaioresHistoriaData[event]))
    }
+
+   const maioresHistoriaGeralData = maioresService.getMaioresHistoriaGeralData(allMaioresHistoriaData)
+   fs.writeFileSync(`./frontend/src/database/maioresHistoria/geral.json`, JSON.stringify(maioresHistoriaGeralData))
 }

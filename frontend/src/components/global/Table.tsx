@@ -7,6 +7,7 @@ type Props = {
 
 const container = `overflow-x-scroll`
 const table = `border-separate mx-auto whitespace-nowrap`
+const thead = `sticky top-[0px]`
 const th = `bg-vr-black font-normal font-title px-4 py-2 text-center
 [&:not(:last-child)]:border-r`
 const td = `bg-vr-black border-t px-4 text-center
@@ -16,7 +17,7 @@ export default function Table(props: Props){
    return (
       <section className={container}>
          <table className={table}>
-            <thead>
+            <thead className={thead}>
                <tr>
                   {props.headers.map((header, headerI) =>
                      <th className={`${th} ${headerI == 0 && !props.notFixed ? 'left-0 sticky' : ''}`} key={header}>{header}</th>

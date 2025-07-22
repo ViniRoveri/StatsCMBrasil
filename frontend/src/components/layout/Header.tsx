@@ -4,8 +4,8 @@ import NavBarDesktop from "./header/NavBarDesktop"
 import NavBarMobile from "./header/NavBarMobile"
 import { useState } from "react"
 
-const container = `border-b h-[65px] sticky top-0 z-50`
-const header = `bg-vr-black cursor-pointer flex h-full items-center justify-between max-w-[1200px] mx-auto px-6`
+const container = `bg-vr-black border-b h-[65px] sticky top-0 z-50`
+const header = `cursor-pointer flex h-full items-center justify-between max-w-[1200px] mx-auto px-6`
 const title = `font-title min-w-[198px] text-[27px]
 [&_*]:font-title`
 

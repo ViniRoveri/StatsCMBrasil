@@ -1,14 +1,15 @@
 import Podium from "@/components/global/Podium"
 import Table from "@/components/global/Table"
+import eventsInfos from "@/domain/constants/eventsInfos"
 import utilityService from '@/services/utilityService'
 import Link from "next/link"
 
 type Props = {
-   maioresAnoData: any[]
+   maioresHistoriaGeralData: any[]
 }
 
-export default async function MaioresAnoInfo(props: Props){
-   const podiumPeopleData = props.maioresAnoData.slice(0, 3)
+export default async function MaioresHistoriaGeral(props: Props){
+   const podiumPeopleData = props.maioresHistoriaGeralData.slice(0, 3)
    const podiumPeopleIds = podiumPeopleData.map(p => p.personId)
    const podiumImagesUrls = await utilityService.getPersonWcaImageUrlById(podiumPeopleIds)
    
@@ -17,15 +18,12 @@ export default async function MaioresAnoInfo(props: Props){
       <Podium podiumImagesUrls={podiumImagesUrls} podiumPeopleData={podiumPeopleData}/>
 
       <Table 
-         headers={['#', 'Nome', 'Pontos Totais', 'Pts. Campeonatos', 'Pts. Recordes', 'Pts. Médias', 'Pts. Singles']}
-         rows={props.maioresAnoData.map(personData => [
+         headers={['#', 'Nome', 'Pontos Totais', ...eventsInfos.map(e => e.name)]}
+         rows={props.maioresHistoriaGeralData.map(personData => [
             personData.position,
             <Link className="hover:underline" href={`https://www.worldcubeassociation.org/persons/${personData.personId}`} target="_blank">{personData.personName}</Link>,
             utilityService.formatNumber(personData.totalPoints),
-            utilityService.formatNumber(personData.championshipPoints),
-            utilityService.formatNumber(personData.recordPoints),
-            utilityService.formatNumber(personData.averagePoints),
-            utilityService.formatNumber(personData.singlePoints)
+            ...eventsInfos.map(e => personData[e.id] ? utilityService.formatNumber(personData[e.id]) : '0')
          ])}
       />
       </>

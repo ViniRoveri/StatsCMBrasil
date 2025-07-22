@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
+   addGeralOption?: boolean
    baseUrl: string
    extraUrl?: string
    selectedEventName?: string
@@ -47,6 +48,12 @@ export default function EventSelector(props: Props){
          
          {isOpen ?
             <div className={options} style={{width: 'inherit'}}>
+               {props.addGeralOption ?
+                  <Link className={option} href={'/maiores/historia/geral'}>
+                     Geral
+                  </Link>
+               : <></>}
+
                {eventsInfos.map(e => {
                   const linkUrl = props.extraUrl ? props.baseUrl + e.id + props.extraUrl : props.baseUrl + e.id
 

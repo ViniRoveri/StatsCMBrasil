@@ -164,9 +164,60 @@ const maioresService = {
 
       maioresOfEvent
       .sort((a, b) => b.totalPoints - a.totalPoints || b.championshipPoints - a.championshipPoints || b.recordPoints - a.recordPoints || b.averagePoints - a.averagePoints || b.singlePoints - a.singlePoints || a.personName.localeCompare(b.personName))
-      .forEach((m, i) => {m.position = i + 1})
+      .forEach((d, i) => {d.position = i + 1})
 
       return maioresOfEvent
+   },
+
+   getMaioresHistoriaGeralData(allMaioresHistoriaData){
+      let maioresHistoriaGeralData = []
+
+      for(let event of eventsIds){
+         const eventData = allMaioresHistoriaData[event]
+
+         for(let personData of eventData){
+            if(!maioresHistoriaGeralData.some(i => i.personId == personData.personId)){
+               maioresHistoriaGeralData.push({
+                  personId: personData.personId,
+                  personName: personData.personName,
+                  totalPoints: 0
+               })
+            }
+
+            let eventMultiplier
+            switch(event){
+               case '333':
+                  eventMultiplier = 4; break
+               case '222':
+               case '444':
+               case '555':
+               case '333oh':
+                  eventMultiplier = 2.5; break
+               case '666':
+               case '777':
+               case '333bf':
+                  eventMultiplier = 2; break
+               case 'clock':
+               case 'minx':
+               case 'pyram':
+               case 'skewb':
+               case 'sq1':
+                  eventMultiplier = 1.5; break
+               case '333fm':
+               case '444bf':
+               case '555bf':
+                  eventMultiplier = 1; break
+            }
+            const addedPoints = Math.round(personData.totalPoints * eventMultiplier)
+            maioresHistoriaGeralData.find(i => i.personId == personData.personId)[event] = addedPoints
+            maioresHistoriaGeralData.find(i => i.personId == personData.personId).totalPoints += addedPoints
+         }
+      }
+
+      maioresHistoriaGeralData.sort((a, b) => b.totalPoints - a.totalPoints || b['333'] - a['333'] || a.personName.localeCompare(b.personName))
+      .forEach((d, i) => { d.position = i + 1 })
+
+      return maioresHistoriaGeralData
    },
 
    getQualifiedPeopleIdsByEvent(championships, ranksAverage, results, eventId, peopleResults){

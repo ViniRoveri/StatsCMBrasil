@@ -32,7 +32,7 @@ export default async function YearWinnerCard(props: Props){
 
             <div className={personInfo}>
                <p className="font-bold">{props.winner.personName}</p>
-               <p>{props.winner.totalPoints} Pontos</p>
+               <p>{utilityService.formatNumber(props.winner.totalPoints)} Pontos</p>
             </div>
          </div>
       </Link>
