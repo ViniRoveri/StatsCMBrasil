@@ -45,14 +45,27 @@ export default function page(){
             <p>É apenas um cálculo por pessoa feito da seguinte forma:</p>
             <p>- Ranking Atual: O ranking que a melhor média/single da pessoa está no ranking do Brasil na WCA.</p>
             <p>- Número no Top 100: A quantidade de médias/singles que a pessoa tem entre as 100 melhores médias/singles já feitas no Brasil.</p>
-            <p>- Formula Final: (101 - currentAverageRanking) + numberInTop100</p>
+            <p>- Formula Final: (101 - Ranking Atual) + Número no Top 100</p>
          </div>
          
-         <div>
+         <div className="mb-8">
             <Title>Pontuação Total</Title>
             <p>A soma dos pontos de cada pessoa no evento dando os pesos devidos aos aspectos mais importantes.</p>
             <p>Após a aplicação dos seguintes pesos, os valores de cada pontuação são arredondados para o número inteiro mais próximo antes da soma final.</p>
             <p>- Formula Final: (Pontos de Competições * 8) + (Pontos de Recordes * 4) + (Pontos de Médias / 4) + (Pontos de Singles / 8)</p>
+         </div>
+         
+         <div>
+            <Title>Maiores da História - Geral</Title>
+            <p>Como é calculada a pontuação de cada pessoa na categoria "Geral" dos Maiores da História.</p>
+            <p>O peso de cada evento:</p>
+            <p>- 3x3: 4 pontos</p>
+            <p>- 2x2, 4x4, 5x5 e 3x3 OH: 2.5 pontos</p>
+            <p>- 6x6, 7x7, 3x3 BLD: 2 pontos</p>
+            <p>- Clock, Megaminx, Pyraminx, Skewb, Square-1: 1.5 pontos</p>
+            <p>- 3x3 FM, 4x4 BLD, 5x5 BLD: 1 ponto</p>
+            <p>- Formula Final por evento: Pontos da pessoa no ranking do evento * Peso do Evento</p>
+            <p>Após a execução desta formula pra todos eventos, os pontos da pessoa em cada evento são somados e o total a classifica no ranking.</p>
          </div>
       </section>
    )
