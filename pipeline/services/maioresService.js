@@ -221,8 +221,8 @@ const maioresService = {
    },
 
    getQualifiedPeopleIdsByEvent(championships, ranksAverage, results, eventId, peopleResults){
-      const byTop25Average = ranksAverage
-      .filter(r => r.eventId == eventId && r.countryRank <= 25)
+      const byTop10Average = ranksAverage
+      .filter(r => r.eventId == eventId && r.countryRank <= 10)
       .map(r => r.personId)
 
       const eventResultsWithRecords = peopleResults.filter(r => r.eventId == eventId && (r.regionalAverageRecord != 'NULL' || r.regionalSingleRecord != 'NULL'))
@@ -253,7 +253,7 @@ const maioresService = {
       }
 
       const allQualifiedPeopleIdsUnfiltered = [
-         ...byTop25Average,
+         ...byTop10Average,
          ...byPodium,
          ...byFinalsAndTop100,
          ...qualifiedByRecords

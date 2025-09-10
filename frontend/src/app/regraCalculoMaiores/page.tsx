@@ -12,7 +12,7 @@ export default function page(){
          <div className="mb-8">
             <Title>Qualificados pro ranking</Title>
             <p>São qualificados pro ranking de cada evento aqueles que cumprirem ao menos uma das condições:</p>
-            <p>- Está atualmente no top 25 do Brasil de média.</p>
+            <p>- Está atualmente no top 10 do Brasil de média.</p>
             <p>- Tem um recorde no evento.</p>
             <p>- Esteve em um pódium de alguma competição importante (Brasileiro, Sul-Americano ou Mundial).</p>
             <p>- Já foi finalista de uma competição importante E está atualmente no top 100 de média do Brasil.</p>

@@ -3,6 +3,7 @@ const navBarItems = [
    {text: 'Maiores do Ano', url: '/maiores/ano/333'},
    {text: 'Hall dos Campeões', url: '/campeoes/maiores/333/Todos'},
    {text: 'História dos Recordes', url: '/recordes/average/333'},
+   {text: 'Rankings Regionais', url: '/regionais'},
    {text: 'Links Úteis', url: '/links'}
 ]
 

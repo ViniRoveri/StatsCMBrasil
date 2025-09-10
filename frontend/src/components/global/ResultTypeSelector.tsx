@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
 
 type Props = {
    baseUrl: string
@@ -13,6 +14,8 @@ const selectedOption = `bg-vr-yellow/25`
 export default function ResultTypeSelector(props: Props){
    const linkAverage = props.extraUrl ? props.baseUrl + 'average' + props.extraUrl : props.baseUrl + 'average'
    const linkSingle = props.extraUrl ? props.baseUrl + 'single' + props.extraUrl : props.baseUrl + 'single'
+
+   if(props.selectedType != 'average' && props.selectedType != 'single') redirect(linkAverage)
 
    return (
       <div className={container}>

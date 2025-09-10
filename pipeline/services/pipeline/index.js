@@ -3,6 +3,7 @@ import pipelineMaiores from "./maiores.js"
 import pipelineRecordes from './recordes.js'
 import pipelineCampeoes from "./campeoes.js"
 import fs from 'fs'
+import pipelineRegionais from "./regionais.js"
 
 console.log('Starting pipeline...')
 
@@ -18,6 +19,8 @@ if(wcaExport.resultsAreComplete){
    pipelineCampeoes()
    
    pipelineRecordes()
+
+   pipelineRegionais()
 }else{
    console.log('Pipeline not executed, results are incomplete.')
 }

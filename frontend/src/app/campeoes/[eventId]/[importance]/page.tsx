@@ -14,27 +14,29 @@ type Props = {
 
 const campeoesInfo = `flex flex-col gap-4 items-center justify-center`
 
-export default function page(props: Props){
-   const campeoesOfEvent = databaseService.getCampeoesByEvent(props.params.eventId)
-   const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
+export default async function page(props: Props){
+   const params = await props.params
+
+   const campeoesOfEvent = databaseService.getCampeoesByEvent(params.eventId)
+   const selectedEventName = eventsInfos.find(e => e.id == params.eventId)?.name
    const usedImportanceOptions = campeoesOfEvent.map((c: any) => c.importance)
    
    let selectedCampeoesOfEvent = campeoesOfEvent
-   if(titleImportances.includes(props.params.importance)) selectedCampeoesOfEvent = campeoesOfEvent.filter((c: any) => c.importance == props.params.importance)
+   if(titleImportances.includes(params.importance)) selectedCampeoesOfEvent = campeoesOfEvent.filter((c: any) => c.importance == params.importance)
 
-   if(!usedImportanceOptions.includes(props.params.importance) && props.params.importance != 'Todos') redirect(`/campeoes/maiores/${props.params.eventId}/Todos`)
+   if(!usedImportanceOptions.includes(params.importance) && params.importance != 'Todos') redirect(`/campeoes/maiores/${params.eventId}/Todos`)
 
    return (
       <>
       <div className="max-w-[1000px] mx-auto">
-         <GoAheadArrow link={`/campeoes/maiores/${props.params.eventId}/Todos`} text="Ver maiores campeões"/>
+         <GoAheadArrow link={`/campeoes/maiores/${params.eventId}/Todos`} text="Ver maiores campeões"/>
 
          <Title>Campeões por Ano</Title>
 
          <div className="flex gap-6 items-center">
-            <EventSelector baseUrl="/campeoes/" selectedEventName={selectedEventName} extraUrl={`/${props.params.importance}`}/>
+            <EventSelector baseUrl="/campeoes/" selectedEventName={selectedEventName} extraUrl={`/${params.importance}`}/>
 
-            <ImportanceSelector baseUrl={`/campeoes/${props.params.eventId}`} selectedName={props.params.importance} usedOptions={usedImportanceOptions}/>
+            <ImportanceSelector baseUrl={`/campeoes/${params.eventId}`} selectedName={params.importance} usedOptions={usedImportanceOptions}/>
          </div>
       </div>
 

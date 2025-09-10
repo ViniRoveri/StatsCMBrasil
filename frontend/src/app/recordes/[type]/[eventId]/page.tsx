@@ -12,9 +12,11 @@ type Props = {
    }
 }
 
-export default function page(props: Props){
-   const selectedResultType = props.params.type
-   const selectedEventId = props.params.eventId
+export default async function page(props: Props){
+   const params = await props.params
+
+   const selectedResultType = params.type
+   const selectedEventId = params.eventId
    const selectedEventName = eventsInfos.find(e => e.id == selectedEventId)?.name
 
    let recordesData

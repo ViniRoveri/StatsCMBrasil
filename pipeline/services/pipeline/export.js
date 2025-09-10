@@ -6,7 +6,6 @@ import rl from 'node:readline'
 let championshipsIds = []
 let allPeopleIds = []
 let resultsCompetitionsIds = []
-let peopleInTop1000Ids = []
 let latestYearWithResult = 0
 
 function filterChampionships(championships){
@@ -93,26 +92,22 @@ async function getTableJson(tableName){
                   if(resultsCompetitionsIds.includes(row[0]) && Number(row[16]) > latestYearWithResult) latestYearWithResult = Number(row[16])
                }; break;
             case 'RanksAverage':
-               if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2]) && Number(row[5]) < 1000){
+               if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2])){
                   tableJson.push({
                      best: row[0],
                      personId: row[1],
                      eventId: row[2],
                      countryRank: row[5]
                   })
-   
-                  peopleInTop1000Ids.push(row[1])
                }; break;
             case 'RanksSingle':
-               if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2]) && Number(row[5]) < 1000){
+               if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2])){
                   tableJson.push({
                      best: row[0],
                      personId: row[1],
                      eventId: row[2],
                      countryRank: row[5]
                   })
-   
-                  peopleInTop1000Ids.push(row[1])
                }; break;
          }
       })
@@ -133,7 +128,6 @@ export default async function pipelineExport(){
       ranksAverage: await getTableJson('RanksAverage'),
       ranksSingle: await getTableJson('RanksSingle')
    }
-   wcaExport.people = wcaExport.people.filter(p => peopleInTop1000Ids.includes(p.id))
    wcaExport.championships = filterChampionships(wcaExport.unfilteredChampionships)
 
    const today = new Date()

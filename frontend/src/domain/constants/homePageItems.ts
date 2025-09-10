@@ -20,6 +20,11 @@ const homePageItems = [
       text: 'Todos recordes quebrados por brasileiros na história do esporte por todas categorias!'
    },
    {
+      url: '/regionais',
+      title: 'Rankings Regionais', 
+      text: 'Os rankings dos mais rápidos, em single e média, de cada região e estado do Brasil!'
+   },
+   {
       url: '/links',
       title: 'Links Úteis', 
       text: 'Links que sempre se pode precisar, separados especialmente pra fácil acesso!'

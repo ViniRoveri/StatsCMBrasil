@@ -9,24 +9,26 @@ type Props = {
    params: { eventId: string }
 }
 
-export default function page(props: Props){
-   const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
+export default async function page(props: Props){
+   const params = await props.params
+
+   const selectedEventName = eventsInfos.find(e => e.id == params.eventId)?.name
    
    let maioresHistoriaData
-   if(props.params.eventId == 'geral') maioresHistoriaData = databaseService.getMaioresHistoriaByEvent('geral')
-   else if(selectedEventName) maioresHistoriaData = databaseService.getMaioresHistoriaByEvent(props.params.eventId)
+   if(params.eventId == 'geral') maioresHistoriaData = databaseService.getMaioresHistoriaByEvent('geral')
+   else if(selectedEventName) maioresHistoriaData = databaseService.getMaioresHistoriaByEvent(params.eventId)
 
    return (
       <>
       <div className="max-w-[1000px] mx-auto">
          <Title>Maiores da História</Title>
 
-         <EventSelector baseUrl="/maiores/historia/" selectedEventName={props.params.eventId == 'geral' ? 'Geral' : selectedEventName} addGeralOption/>
+         <EventSelector baseUrl="/maiores/historia/" selectedEventName={params.eventId == 'geral' ? 'Geral' : selectedEventName} addGeralOption/>
       </div>
 
       {selectedEventName ?
          <MaioresHistoriaInfo maioresHistoriaEventData={maioresHistoriaData}/>
-      : props.params.eventId == 'geral' ?
+      : params.eventId == 'geral' ?
          <MaioresHistoriaGeral maioresHistoriaGeralData={maioresHistoriaData}/>
       :
          <></>

@@ -8,10 +8,12 @@ type Props = {
    params: { eventId: string }
 }
 
-export default function page(props: Props){
+export default async function page(props: Props){
+   const params = await props.params
+
    const maioresAnoWinners = databaseService.getMaioresAnoWinners()
 
-   const selectedEventName = eventsInfos.find(e => e.id == props.params.eventId)?.name
+   const selectedEventName = eventsInfos.find(e => e.id == params.eventId)?.name
 
    return (
       <>
@@ -22,7 +24,7 @@ export default function page(props: Props){
       </div>
 
       {selectedEventName ?
-         <MaioresAnoWinnersInfo maioresAnoWinners={maioresAnoWinners} eventId={props.params.eventId}/>
+         <MaioresAnoWinnersInfo maioresAnoWinners={maioresAnoWinners} eventId={params.eventId}/>
       :
          <></>
       }
