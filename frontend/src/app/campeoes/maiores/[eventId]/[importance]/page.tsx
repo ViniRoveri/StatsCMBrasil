@@ -9,7 +9,10 @@ import databaseService from "@/services/databaseService"
 import { redirect } from "next/navigation"
 
 type Props = {
-   params: { eventId: string, importance: string }
+   params: Promise<{ 
+      eventId: string, 
+      importance: string 
+   }>
 }
 
 const maioresCampeoesInfo = `flex flex-col gap-4 items-center justify-center`

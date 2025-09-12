@@ -2,11 +2,14 @@ import fs from 'fs'
 import championshipTypes from '../../domain/constants/championshipTypes.js'
 import eventsIds from '../../domain/constants/eventsIds.js'
 import rl from 'node:readline'
+import peoplesStates from '../../domain/constants/peoplesStates.js'
 
 let championshipsIds = []
 let allPeopleIds = []
 let resultsCompetitionsIds = []
 let latestYearWithResult = 0
+let peopleIdsWithStateAdded = peoplesStates.map(p => p.id)
+let peopleToAddState = ''
 
 function filterChampionships(championships){
    let filteredChampionships = []
@@ -108,6 +111,11 @@ async function getTableJson(tableName){
                      eventId: row[2],
                      countryRank: row[5]
                   })
+
+                  if(!peopleIdsWithStateAdded.includes(row[1])){
+                     peopleToAddState += `https://www.worldcubeassociation.org/persons/${row[1]}\n`
+                     peopleIdsWithStateAdded.push(row[1])
+                  }
                }; break;
          }
       })
@@ -134,6 +142,8 @@ export default async function pipelineExport(){
    wcaExport.resultsAreComplete = latestYearWithResult >= today.getFullYear()
 
    fs.writeFileSync('./wcaExport.json', JSON.stringify(wcaExport))
+
+   fs.writeFileSync('./peopleToAddState.txt', peopleToAddState)
 
    console.log('Export pipepline finished sucessfully!')
 }

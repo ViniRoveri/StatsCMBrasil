@@ -11,7 +11,7 @@ const link = `flex items-center
 hover:tracking-[1px]`
 const icon = `ml-1 w-[18px]`
 
-export default function GoBackArrow(props: Props){
+export default function GoAheadArrow(props: Props){
    return (
       <div className={container}>
          <Link className={link} href={props.link}>

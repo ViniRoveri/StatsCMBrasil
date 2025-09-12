@@ -48,6 +48,8 @@ export default function pipelineRegionais(){
             personRegion = 'Norte'; break
       }
 
+      if(!personRegion) continue
+
       const personRanksAverage = wcaExport.ranksAverage.filter(r => r.personId == person.id)
       const personRanksSingle = wcaExport.ranksSingle.filter(r => r.personId == person.id)
 
@@ -67,10 +69,11 @@ export default function pipelineRegionais(){
       }
 
       for(let rank of personRanksAverage){
-         const obj = {
+         let obj = {
             personId: person.id,
             personName: wcaExport.people.find(p => p.id == person.id).name,
-            result: rank.best
+            result: rank.best,
+            state: person.state
          }
 
          if(!regionsData[person.state].average[rank.eventId]) regionsData[person.state].average[rank.eventId] = []
@@ -81,10 +84,11 @@ export default function pipelineRegionais(){
       }
       
       for(let rank of personRanksSingle){
-         const obj = {
+         let obj = {
             personId: person.id,
             personName: wcaExport.people.find(p => p.id == person.id).name,
-            result: rank.best
+            result: rank.best,
+            state: person.state
          }
 
          if(!regionsData[person.state].single[rank.eventId]) regionsData[person.state].single[rank.eventId] = []

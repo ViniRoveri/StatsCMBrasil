@@ -6,7 +6,9 @@ import eventsInfos from "@/domain/constants/eventsInfos";
 import databaseService from '@/services/databaseService'
 
 type Props = {
-   params: { eventId: string }
+   params: Promise<{ 
+      eventId: string
+   }>
 }
 
 export default async function page(props: Props){
