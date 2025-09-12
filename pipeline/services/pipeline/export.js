@@ -143,7 +143,7 @@ export default async function pipelineExport(){
 
    fs.writeFileSync('./wcaExport.json', JSON.stringify(wcaExport))
 
-   fs.writeFileSync('./peopleToAddState.txt', peopleToAddState)
+   fs.writeFileSync('./regionaisUtils/peopleToAddState.txt', peopleToAddState)
 
    console.log('Export pipepline finished sucessfully!')
 }
