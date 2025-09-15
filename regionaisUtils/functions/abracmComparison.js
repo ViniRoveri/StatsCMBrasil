@@ -1,4 +1,4 @@
-import peoplesStates from "../../pipeline/domain/constants/peoplesStates"
+import peoplesStates from "../../pipeline/domain/constants/peoplesStates.js"
 
 export default function abracmComparison(){
    console.log('*** ABRACM COMPARISON ***')

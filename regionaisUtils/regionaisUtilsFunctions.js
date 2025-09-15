@@ -1,5 +1,6 @@
-import abracmComparison from "./functions/abracmComparison";
-import checkForRepeatedIds from "./functions/checkForRepeatedIds";
+import abracmComparison from "./functions/abracmComparison.js";
+import checkForRepeatedIds from "./functions/checkForRepeatedIds.js";
 
-abracmComparison()
 checkForRepeatedIds()
+console.log('')
+abracmComparison()

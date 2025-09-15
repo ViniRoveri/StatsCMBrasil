@@ -1,4 +1,4 @@
-import peoplesStates from "../../pipeline/domain/constants/peoplesStates"
+import peoplesStates from "../../pipeline/domain/constants/peoplesStates.js"
 
 export default function checkForRepeatedIds(){
    console.log('*** CHECK FOR REPEATED IDS ***')
@@ -13,9 +13,6 @@ export default function checkForRepeatedIds(){
       else seen.push(person.id)
    }
 
-   if(repeated.length == 0) console.log('No repeated ids!')
-   else {
-      console.log('Repeated ids found:')
-      for(let id of repeated) console.log(id)
-   }
+   if(repeated.length == 0) console.log('* NO REPEATED IDS! *')
+   else for(let id of repeated) console.log(id)
 }
