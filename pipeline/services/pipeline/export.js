@@ -3,7 +3,6 @@ import championshipTypes from '../../domain/constants/championshipTypes.js'
 import eventsIds from '../../domain/constants/eventsIds.js'
 import rl from 'node:readline'
 import peoplesStates from '../../domain/constants/peoplesStates.js'
-import states from '../../domain/constants/states.js'
 
 let championshipsIds = []
 let allPeopleIds = []
@@ -11,8 +10,7 @@ let resultsCompetitionsIds = []
 let latestYearWithResult = 0
 let peopleIdsToNotCheckState = peoplesStates.map(p => p.id)
 let peopleIdsToAddState = []
-const statesNames = states.map(s => s.name)
-let competitionsStates = []
+let brazilCompsIds = []
 
 function filterChampionships(championships){
    let filteredChampionships = []
@@ -97,8 +95,7 @@ async function getTableJson(tableName){
 
                   if(resultsCompetitionsIds.includes(row[0]) && Number(row[16]) > latestYearWithResult) latestYearWithResult = Number(row[16])
 
-                  const compState = statesNames.filter(s => row[7].includes(s))
-                  if(compState.length == 1) competitionsStates.push({id: row[0], state: compState[0]})
+                  if(row[8] == 'Brazil') brazilCompsIds.push(row[0])
                }; break;
             case 'RanksAverage':
                if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2])){
@@ -134,32 +131,25 @@ async function getTableJson(tableName){
 function regionaisLogic(wcaExport){
    console.log('Starting Regionais logic...')
 
-   let peopleAndResultStates = {}
-   let peopleDataWithResultsInOneState = ''
-
+   let peopleIdsCompetedInBrazil = []
    for(let result of wcaExport.results){
-      const compData = competitionsStates.find(c => c.id == result.competitionId)
-      if(!compData || !peopleIdsToAddState.includes(result.personId)) continue
-
-      if(peopleAndResultStates[result.personId]) peopleAndResultStates[result.personId].push(compData.state)
-      else peopleAndResultStates[result.personId] = [compData.state]
-   }
-
-   let addedIdsWithOneState = []
-   for(let personId of Object.keys(peopleAndResultStates)){
-      const resultStates = [...new Set(peopleAndResultStates[personId])]
-
-      if(resultStates.length == 1) {
-         peopleDataWithResultsInOneState += `{ id: '${personId}', state: '${states.find(s => s.name == resultStates[0]).abbreviation}' },\n`
-         addedIdsWithOneState.push(personId)
+      if(brazilCompsIds.includes(result.competitionId) && !peopleIdsCompetedInBrazil.includes(result.personId) && peopleIdsToAddState.includes(result.personId)) {
+         peopleIdsCompetedInBrazil.push(result.personId)
       }
    }
-   fs.writeFileSync('./regionaisUtils/peopleWithOneState.txt', peopleDataWithResultsInOneState)
-   
-   peopleIdsToAddState = peopleIdsToAddState.filter(id => !addedIdsWithOneState.includes(id))
-   let linksToCheckState = ''
-   for(let id of peopleIdsToAddState) linksToCheckState += `https://www.worldcubeassociation.org/persons/${id}\n`
-   fs.writeFileSync('./regionaisUtils/peopleToAddState.txt', linksToCheckState)
+
+   let peopleToAddStateText = ''
+   for(let personId of peopleIdsCompetedInBrazil){
+      peopleToAddStateText += `https://www.worldcubeassociation.org/persons/${personId}\n`
+   }
+   fs.writeFileSync('./regionaisUtils/peopleToAddState.txt', peopleToAddStateText)
+
+   const peopleIdsDidntCompeteInBrazil = peopleIdsToAddState.filter(id => !peopleIdsCompetedInBrazil.includes(id))
+   let didntCompeteInBrazilText = ''
+   for(let personId of peopleIdsDidntCompeteInBrazil){
+      didntCompeteInBrazilText += `https://www.worldcubeassociation.org/persons/${personId}\n`
+   }
+   fs.writeFileSync('./regionaisUtils/didntCompeteInBrazil.txt', didntCompeteInBrazilText)
 
    console.log('Regionais logic finished sucessfully!')
 }
