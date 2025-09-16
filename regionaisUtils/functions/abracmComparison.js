@@ -3,6 +3,11 @@ import peoplesStates from "../../pipeline/domain/constants/peoplesStates.js"
 export default function abracmComparison(){
    console.log('*** ABRACM COMPARISON ***')
 
+   const idsToNotCheck = [
+      '2007CINO01',
+      '2015IACO01',
+   ]
+
    fetch('https://diogojs.pythonanywhere.com/ranking')
    .then(res => res.json())
    .then(data => {
@@ -11,6 +16,8 @@ export default function abracmComparison(){
       const ids = Object.keys(data.competitors)
 
       for(let id of ids){
+         if(idsToNotCheck.includes(id)) continue
+
          const personData = data.competitors[id]
 
          const myPersonData = peoplesStates.find(p => p.id == id)

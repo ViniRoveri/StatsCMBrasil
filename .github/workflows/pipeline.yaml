@@ -20,5 +20,5 @@ jobs:
           git config --global user.name 'ViniRoveri'
           git config --global user.email 'viniciusroverirocha@gmail.com'
           git add .
-          git diff --staged --quiet || git commit -m "API Update from Pipeline"
+          git diff --staged --quiet || git commit -m "Database update from pipeline"
           git push
