@@ -1,7 +1,7 @@
 import fs from 'fs'
-import eventsIds from '../../domain/constants/eventsIds.js'
-import championshipTypes from '../../domain/constants/championshipTypes.js'
-import titleImportances from '../../domain/constants/titleImportances.js'
+import eventsIds from '../domain/constants/eventsIds.js'
+import championshipTypes from '../domain/constants/championshipTypes.js'
+import titleImportances from '../domain/constants/titleImportances.js'
 
 function compareImportance(a, b){
    if ( a.importance == titleImportances[0] || b.importance == titleImportances[2] ) return 1

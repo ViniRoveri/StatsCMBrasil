@@ -1,5 +1,5 @@
 import fs from 'fs'
-import eventsIds from '../../domain/constants/eventsIds.js'
+import eventsIds from '../domain/constants/eventsIds.js'
 
 export default function pipelineRecordes(){
    console.log('Starting Recordes pipepline...')

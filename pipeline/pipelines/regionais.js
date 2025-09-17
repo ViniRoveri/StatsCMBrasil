@@ -1,6 +1,6 @@
 import fs from 'fs'
-import peoplesStates from '../../domain/constants/peoplesStates.js'
-import eventsIds from '../../domain/constants/eventsIds.js'
+import peoplesStates from '../domain/constants/peoplesStates.js'
+import eventsIds from '../domain/constants/eventsIds.js'
 
 export default function pipelineRegionais(){
    console.log('Starting Regionais pipepline...')

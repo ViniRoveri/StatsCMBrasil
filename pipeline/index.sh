@@ -5,7 +5,7 @@ curl -k https://www.worldcubeassociation.org/export/results/WCA_export.tsv.zip -
 
 unzip ./database/export.zip -d ./database
 
-node ./pipeline/services/pipeline/index.js
+node ./pipeline/index.js
 
 rm -Rf ./database
 rm -Rf ./wcaExport.json

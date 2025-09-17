@@ -1,9 +1,9 @@
-import pipelineExport from "./export.js"
-import pipelineMaiores from "./maiores.js"
-import pipelineRecordes from './recordes.js'
-import pipelineCampeoes from "./campeoes.js"
+import pipelineExport from "./pipelines/export.js"
+import pipelineMaiores from "./pipelines/maiores.js"
+import pipelineRecordes from './pipelines/recordes.js'
+import pipelineCampeoes from "./pipelines/campeoes.js"
 import fs from 'fs'
-import pipelineRegionais from "./regionais.js"
+import pipelineRegionais from "./pipelines/regionais.js"
 
 console.log('Starting pipeline...')
 

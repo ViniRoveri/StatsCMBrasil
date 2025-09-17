@@ -1,8 +1,8 @@
 import fs from 'fs'
-import championshipTypes from '../../domain/constants/championshipTypes.js'
-import eventsIds from '../../domain/constants/eventsIds.js'
+import championshipTypes from '../domain/constants/championshipTypes.js'
+import eventsIds from '../domain/constants/eventsIds.js'
 import rl from 'node:readline'
-import peoplesStates from '../../domain/constants/peoplesStates.js'
+import peoplesStates from '../domain/constants/peoplesStates.js'
 
 let championshipsIds = []
 let allPeopleIds = []

@@ -1,5 +1,5 @@
-import eventsIds from '../../../domain/constants/eventsIds.js'
-import maioresService from '../../maioresService.js'
+import eventsIds from '../../domain/constants/eventsIds.js'
+import maioresService from '../../services/maioresService.js'
 import fs from 'fs'
 
 export default function pipelineMaioresAno(championships, championshipsComps, people, ranksAverage, ranksSingle, peopleResults, competitions, championshipsResults){

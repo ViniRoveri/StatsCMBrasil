@@ -21,19 +21,19 @@ const utilityService = {
       return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
    },
 
-   formatTime(tempo){
-      let tempoFormatado = (Number(tempo) / 100).toFixed(2)
+   formatTime(time){
+      let formattedTime = (Number(time) / 100).toFixed(2)
 
-      if(tempoFormatado.length > 5){
-         const ms = tempo.slice(-2)
-         const totalSeconds = Number(tempo.slice(0, -2))
+      if(formattedTime.length > 5){
+         const ms = time.slice(-2)
+         const totalSeconds = Number(time.slice(0, -2))
          const minutes = Math.floor(totalSeconds / 60)
          const seconds = totalSeconds - (minutes * 60)
 
-         tempoFormatado = `${minutes}:${String(seconds).padStart(2, '0')}.${ms}`
+         formattedTime = `${minutes}:${String(seconds).padStart(2, '0')}.${ms}`
       }
 
-      return tempoFormatado
+      return formattedTime
    }
 }
 
