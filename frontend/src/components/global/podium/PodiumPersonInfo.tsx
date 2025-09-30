@@ -1,7 +1,9 @@
 import utilityService from "@/services/utilityService"
+import PersonLink from "../PersonLink"
 
 type Props = {
    borderColor: string
+   isRegional?: boolean
    personData: any
    personImageUrl: string
 }
@@ -14,8 +16,12 @@ export default function PodiumPersonInfo(props: Props){
    return (
       <div className={personInfo}>
          <div className={personImage} style={{backgroundImage: `url(${props.personImageUrl})`, borderColor: props.borderColor}}/>
-         <p className={personName}>{props.personData.personName}</p>
-         <p>{utilityService.formatNumber(props.personData.totalPoints)} Pontos</p>
+         <PersonLink personId={props.personData.personId} personName={props.personData.personName} styles={personName}/>
+         {props.isRegional ?
+            <p>{utilityService.formatTime(props.personData.result)}</p>
+         :
+            <p>{utilityService.formatNumber(props.personData.totalPoints)} Pontos</p>
+         }
       </div>
    )
 }

@@ -1,6 +1,6 @@
 import utilityService from "@/services/utilityService"
 import Table from "../global/Table"
-import Link from "next/link"
+import PersonLink from "../global/PersonLink"
 
 type Props = {
    recordesData: any[]
@@ -21,7 +21,7 @@ export default function RecordesInfo(props: Props){
             let row = [
                result.eventId == '333fm' && props.type == 'single' ? tempo : tempoFormatado,
                result[props.type == 'average' ? 'regionalAverageRecord' : 'regionalSingleRecord'],
-               <Link className="hover:underline" href={`https://www.worldcubeassociation.org/persons/${result.personId}`} target="_blank">{result.personName}</Link>,
+               <PersonLink personId={result.personId} personName={result.personName}/>,
                result.competitionName
             ]
             

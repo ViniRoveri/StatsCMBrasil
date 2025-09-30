@@ -1,5 +1,5 @@
 import utilityService from "@/services/utilityService"
-import Link from "next/link"
+import PersonLink from "../global/PersonLink"
 
 type Props = {
    campeaoData: any
@@ -20,7 +20,7 @@ export default async function CampeaoCard(props: Props){
          <div className={info}>
             <p className="font-title text-[28px]">{props.campeaoData.year}</p>
 
-            <Link className="font-bold text-[24px] hover:underline" href={`https://www.worldcubeassociation.org/persons/${props.campeaoData.personId}`} target="_blank">{props.campeaoData.personName}</Link>
+            <PersonLink personId={props.campeaoData.personId} personName={props.campeaoData.personName} styles='font-bold text-[24px]'/>
 
             <p className="font-bold">{props.campeaoData.importance}</p>
          </div>

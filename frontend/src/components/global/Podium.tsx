@@ -1,6 +1,7 @@
 import PodiumPersonInfo from "./podium/PodiumPersonInfo"
 
 type Props = {
+   isRegional?: boolean
    podiumImagesUrls: string[]
    podiumPeopleData: any[]
 }
@@ -14,17 +15,17 @@ export default function Podium(props: Props){
       <section className={container}>
          <div className={podium}>
             <div className={podiumStep}>
-               <PodiumPersonInfo borderColor="#C0C0C0" personData={props.podiumPeopleData[1]} personImageUrl={props.podiumImagesUrls[1]}/>
+               <PodiumPersonInfo borderColor="#C0C0C0" isRegional={props.isRegional} personData={props.podiumPeopleData[1]} personImageUrl={props.podiumImagesUrls[1]}/>
                <div className="border-l border-t h-[60px] w-full"/>
             </div>
             
             <div className={`${podiumStep} z-10`}>
-               <PodiumPersonInfo borderColor="#FFD700" personData={props.podiumPeopleData[0]} personImageUrl={props.podiumImagesUrls[0]}/>
+               <PodiumPersonInfo borderColor="#FFD700" isRegional={props.isRegional} personData={props.podiumPeopleData[0]} personImageUrl={props.podiumImagesUrls[0]}/>
                <div className="border-l border-r border-t h-[90px] w-full"/>
             </div>
             
             <div className={podiumStep}>
-               <PodiumPersonInfo borderColor="#CD7F32" personData={props.podiumPeopleData[2]} personImageUrl={props.podiumImagesUrls[2]}/>
+               <PodiumPersonInfo borderColor="#CD7F32" isRegional={props.isRegional} personData={props.podiumPeopleData[2]} personImageUrl={props.podiumImagesUrls[2]}/>
                <div className="border-r border-t h-[30px] w-full"/>
             </div>         
          </div>
