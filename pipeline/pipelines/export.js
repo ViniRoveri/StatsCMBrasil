@@ -3,6 +3,7 @@ import championshipTypes from '../domain/constants/championshipTypes.js'
 import eventsIds from '../domain/constants/eventsIds.js'
 import rl from 'node:readline'
 import peoplesStates from '../domain/constants/peoplesStates.js'
+import peopleIdsUnableToFindState from '../domain/constants/peopleIdsUnableToFindState.js'
 
 let championshipsIds = []
 let allPeopleIds = []
@@ -128,7 +129,7 @@ async function getTableJson(tableName){
    })
 }
 
-function regionaisLogic(wcaExport){
+function createRegionaisUtilsFiles(wcaExport){
    console.log('Starting Regionais logic...')
 
    let peopleIdsCompetedInBrazil = []
@@ -137,6 +138,7 @@ function regionaisLogic(wcaExport){
          peopleIdsCompetedInBrazil.push(result.personId)
       }
    }
+   peopleIdsCompetedInBrazil = peopleIdsCompetedInBrazil.filter(id => !peopleIdsUnableToFindState.includes(id))
 
    let peopleToAddStateText = ''
    for(let personId of peopleIdsCompetedInBrazil){
@@ -144,12 +146,18 @@ function regionaisLogic(wcaExport){
    }
    fs.writeFileSync('./regionaisUtils/peopleToAddState.txt', peopleToAddStateText)
 
-   const peopleIdsDidntCompeteInBrazil = peopleIdsToAddState.filter(id => !peopleIdsCompetedInBrazil.includes(id))
+   const peopleIdsDidntCompeteInBrazil = peopleIdsToAddState.filter(id => !peopleIdsCompetedInBrazil.includes(id) && !peopleIdsUnableToFindState.includes(id))
    let didntCompeteInBrazilText = ''
    for(let personId of peopleIdsDidntCompeteInBrazil){
       didntCompeteInBrazilText += `https://www.worldcubeassociation.org/persons/${personId}\n`
    }
    fs.writeFileSync('./regionaisUtils/didntCompeteInBrazil.txt', didntCompeteInBrazilText)
+
+   let unableToFindStateText = ''
+   for(let personId of peopleIdsUnableToFindState){
+      if(personId) unableToFindStateText += `https://www.worldcubeassociation.org/persons/${personId}\n`
+   }
+   fs.writeFileSync('./regionaisUtils/unableToFindState.txt', unableToFindStateText)
 
    console.log('Regionais logic finished sucessfully!')
 }
@@ -172,7 +180,7 @@ export default async function pipelineExport(){
 
    fs.writeFileSync('./wcaExport.json', JSON.stringify(wcaExport))
 
-   regionaisLogic(wcaExport)
+   createRegionaisUtilsFiles(wcaExport)
    
    console.log('Export pipepline finished sucessfully!')
 }
