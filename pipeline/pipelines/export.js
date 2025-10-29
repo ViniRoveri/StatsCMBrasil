@@ -4,6 +4,8 @@ import eventsIds from '../domain/constants/eventsIds.js'
 import rl from 'node:readline'
 import peoplesStates from '../domain/constants/peoplesStates.js'
 import peopleIdsUnableToFindState from '../domain/constants/peopleIdsUnableToFindState.js'
+import statesNames from '../domain/constants/statesNames.js'
+import statesInfo from '../domain/constants/statesInfo.js'
 
 let championshipsIds = []
 let allPeopleIds = []
@@ -12,6 +14,7 @@ let latestYearWithResult = 0
 let peopleIdsToNotCheckState = peoplesStates.map(p => p.id)
 let peopleIdsToAddState = []
 let brazilCompsIds = []
+let compsWithStates = []
 
 function filterChampionships(championships){
    let filteredChampionships = []
@@ -55,10 +58,10 @@ async function getTableJson(tableName){
                   championshipsIds.push(row[1])
                }; break;
             case 'Persons':
-               if(row[4] == 'Brazil'){
+               if(row[4] == 'Brazil' && row[3] == '1'){
                   tableJson.push({
                      name: row[0],
-                     id: row[2] 
+                     id: row[2]
                   })
 
                   allPeopleIds.push(row[2])
@@ -97,6 +100,9 @@ async function getTableJson(tableName){
                   if(resultsCompetitionsIds.includes(row[0]) && Number(row[16]) > latestYearWithResult) latestYearWithResult = Number(row[16])
 
                   if(row[8] == 'Brazil') brazilCompsIds.push(row[0])
+
+                  const compState = statesNames.find(s => row[7].includes(s))
+                  if(compState) compsWithStates.push({id: row[0], state: compState}) 
                }; break;
             case 'RanksAverage':
                if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2])){
@@ -132,28 +138,67 @@ async function getTableJson(tableName){
 function createRegionaisUtilsFiles(wcaExport){
    console.log('Starting Regionais logic...')
 
+   function sortIdsByRank(ids){
+      ids.sort((a, b) => {
+         const aBestRankSingle = Math.min(...wcaExport.ranksSingle.filter(r => r.personId == a).map(r => r.countryRank))
+         const aBestRankAverage = Math.min(...wcaExport.ranksAverage.filter(r => r.personId == a).map(r => r.countryRank))
+         const aBestRank = Math.min(aBestRankSingle, aBestRankAverage)
+         
+         const bBestRankSingle = Math.min(...wcaExport.ranksSingle.filter(r => r.personId == b).map(r => r.countryRank))
+         const bBestRankAverage = Math.min(...wcaExport.ranksAverage.filter(r => r.personId == b).map(r => r.countryRank))
+         const bBestRank = Math.min(bBestRankSingle, bBestRankAverage)
+
+         return aBestRank - bBestRank
+      })
+   }
+
    let peopleIdsCompetedInBrazil = []
+   let peopleWithStatesCompeted = []
    for(let result of wcaExport.results){
       if(brazilCompsIds.includes(result.competitionId) && !peopleIdsCompetedInBrazil.includes(result.personId) && peopleIdsToAddState.includes(result.personId)) {
          peopleIdsCompetedInBrazil.push(result.personId)
+
+         const compWithState = compsWithStates.find(c => c.id == result.competitionId)
+         if(compWithState){
+            const personWithStates = peopleWithStatesCompeted.find(p => p.id == result.personId)
+
+            if(personWithStates) {
+               personWithStates.states.push(compWithState.state)
+               personWithStates.comps++
+            } else peopleWithStatesCompeted.push({id: result.personId, states: [compWithState.state], comps: 1})
+         }
       }
    }
    peopleIdsCompetedInBrazil = peopleIdsCompetedInBrazil.filter(id => !peopleIdsUnableToFindState.includes(id))
-
+   
+   let peopleOnlyOneState = peopleWithStatesCompeted.filter(p => p.comps >= 5 && [...new Set(p.states)].length == 1)
+   let peopleIdsOnlyOneState = peopleOnlyOneState.map(p => p.id)
+   let peopleCompetedOnlyOneStateText = ''
+   sortIdsByRank(peopleIdsOnlyOneState)
+   for(let personId of peopleIdsOnlyOneState){
+      const personState = peopleOnlyOneState.find(p => p.id == personId).states[0]
+      peopleCompetedOnlyOneStateText += `{ id: '${personId}', state: '${statesInfo.find(i => i.name == personState).abbreviation}' }\n`
+   }
+   fs.writeFileSync('./regionaisUtils/peopleCompetedOnlyOneState.txt', peopleCompetedOnlyOneStateText)
+   
    let peopleToAddStateText = ''
+   peopleIdsCompetedInBrazil = peopleIdsCompetedInBrazil.filter(id => !peopleIdsOnlyOneState.includes(id))
+   sortIdsByRank(peopleIdsCompetedInBrazil)
    for(let personId of peopleIdsCompetedInBrazil){
       peopleToAddStateText += `https://www.worldcubeassociation.org/persons/${personId}\n`
    }
    fs.writeFileSync('./regionaisUtils/peopleToAddState.txt', peopleToAddStateText)
 
-   const peopleIdsDidntCompeteInBrazil = peopleIdsToAddState.filter(id => !peopleIdsCompetedInBrazil.includes(id) && !peopleIdsUnableToFindState.includes(id))
+   const peopleIdsDidntCompeteInBrazil = peopleIdsToAddState.filter(id => !peopleIdsOnlyOneState.includes(id) && !peopleIdsCompetedInBrazil.includes(id) && !peopleIdsUnableToFindState.includes(id))
    let didntCompeteInBrazilText = ''
+   sortIdsByRank(peopleIdsDidntCompeteInBrazil)
    for(let personId of peopleIdsDidntCompeteInBrazil){
       didntCompeteInBrazilText += `https://www.worldcubeassociation.org/persons/${personId}\n`
    }
    fs.writeFileSync('./regionaisUtils/didntCompeteInBrazil.txt', didntCompeteInBrazilText)
 
    let unableToFindStateText = ''
+   sortIdsByRank(peopleIdsUnableToFindState)
    for(let personId of peopleIdsUnableToFindState){
       if(personId) unableToFindStateText += `https://www.worldcubeassociation.org/persons/${personId}\n`
    }

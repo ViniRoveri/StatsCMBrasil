@@ -14,8 +14,7 @@ export default function unableToFindStateCheck(){
    }
    if(repeatedIds.length > 0){
       console.log('* REPEATED IDS FOUND: *')
-      for(let id of repeated) console.log(id)
-      return
+      for(let id of repeatedIds) console.log(id)
    }
 
    const peopleAlreadyHaveState = peoplesStates.filter(p => p.id && peopleIdsUnableToFindState.includes(p.id))
