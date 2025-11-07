@@ -21,8 +21,8 @@ https://www.worldcubeassociation.org/persons/2019GABR05
 https://www.worldcubeassociation.org/persons/2024EVAL01
 https://www.worldcubeassociation.org/persons/2022GOES02
 https://www.worldcubeassociation.org/persons/2023CAVA03
-https://www.worldcubeassociation.org/persons/2015LIMA02
 https://www.worldcubeassociation.org/persons/2023VENT09
+https://www.worldcubeassociation.org/persons/2015LIMA02
 https://www.worldcubeassociation.org/persons/2023VIAN02
 https://www.worldcubeassociation.org/persons/2022TAVA01
 https://www.worldcubeassociation.org/persons/2022JESU01
@@ -49,8 +49,8 @@ https://www.worldcubeassociation.org/persons/2022BAST06
 https://www.worldcubeassociation.org/persons/2025MART73
 https://www.worldcubeassociation.org/persons/2025ARAU03
 https://www.worldcubeassociation.org/persons/2025NETO02
-https://www.worldcubeassociation.org/persons/2024REIN02
 https://www.worldcubeassociation.org/persons/2024RABS01
+https://www.worldcubeassociation.org/persons/2024REIN02
 https://www.worldcubeassociation.org/persons/2025DUAR05
 https://www.worldcubeassociation.org/persons/2022COIM04
 https://www.worldcubeassociation.org/persons/2023PAIX01
