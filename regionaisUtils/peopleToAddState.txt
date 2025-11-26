@@ -119,8 +119,8 @@ https://www.worldcubeassociation.org/persons/2025ALME10
 https://www.worldcubeassociation.org/persons/2025FREI11
 https://www.worldcubeassociation.org/persons/2025TEIX07
 https://www.worldcubeassociation.org/persons/2025TAVE02
-https://www.worldcubeassociation.org/persons/2025DOUR01
 https://www.worldcubeassociation.org/persons/2025MURA07
+https://www.worldcubeassociation.org/persons/2025DOUR01
 https://www.worldcubeassociation.org/persons/2024VIEI08
 https://www.worldcubeassociation.org/persons/2023MULA02
 https://www.worldcubeassociation.org/persons/2024BORB04
@@ -184,8 +184,8 @@ https://www.worldcubeassociation.org/persons/2023MORA54
 https://www.worldcubeassociation.org/persons/2022ANTO10
 https://www.worldcubeassociation.org/persons/2025LORE07
 https://www.worldcubeassociation.org/persons/2025NUNE12
-https://www.worldcubeassociation.org/persons/2022ANSE01
 https://www.worldcubeassociation.org/persons/2025PRIM03
+https://www.worldcubeassociation.org/persons/2022ANSE01
 https://www.worldcubeassociation.org/persons/2025BRIT05
 https://www.worldcubeassociation.org/persons/2025CERV03
 https://www.worldcubeassociation.org/persons/2025SANT83
@@ -203,8 +203,8 @@ https://www.worldcubeassociation.org/persons/2025CUNH01
 https://www.worldcubeassociation.org/persons/2025SAMP04
 https://www.worldcubeassociation.org/persons/2025MARV02
 https://www.worldcubeassociation.org/persons/2025SPIE01
-https://www.worldcubeassociation.org/persons/2025COST20
 https://www.worldcubeassociation.org/persons/2025JUNI08
+https://www.worldcubeassociation.org/persons/2025COST20
 https://www.worldcubeassociation.org/persons/2025SOAR09
 https://www.worldcubeassociation.org/persons/2025MORA38
 https://www.worldcubeassociation.org/persons/2025SILV58
@@ -247,8 +247,8 @@ https://www.worldcubeassociation.org/persons/2025HIRA07
 https://www.worldcubeassociation.org/persons/2025FERR24
 https://www.worldcubeassociation.org/persons/2025LIRA02
 https://www.worldcubeassociation.org/persons/2018MOUR06
-https://www.worldcubeassociation.org/persons/2025FILH13
 https://www.worldcubeassociation.org/persons/2025CAST55
+https://www.worldcubeassociation.org/persons/2025FILH13
 https://www.worldcubeassociation.org/persons/2025ALME11
 https://www.worldcubeassociation.org/persons/2025CRUZ26
 https://www.worldcubeassociation.org/persons/2025LEAO02

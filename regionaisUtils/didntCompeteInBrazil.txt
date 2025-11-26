@@ -52,6 +52,7 @@ https://www.worldcubeassociation.org/persons/2025NETO02
 https://www.worldcubeassociation.org/persons/2024RABS01
 https://www.worldcubeassociation.org/persons/2024REIN02
 https://www.worldcubeassociation.org/persons/2025DUAR05
+https://www.worldcubeassociation.org/persons/2025CARV04
 https://www.worldcubeassociation.org/persons/2022COIM04
 https://www.worldcubeassociation.org/persons/2023PAIX01
 https://www.worldcubeassociation.org/persons/2018TOBI01
@@ -79,7 +80,6 @@ https://www.worldcubeassociation.org/persons/2019SANT59
 https://www.worldcubeassociation.org/persons/2022LOPE38
 https://www.worldcubeassociation.org/persons/2023AMOR01
 https://www.worldcubeassociation.org/persons/2019VECO01
-https://www.worldcubeassociation.org/persons/2025CARV04
 https://www.worldcubeassociation.org/persons/2024MART60
 https://www.worldcubeassociation.org/persons/2025TABA01
 https://www.worldcubeassociation.org/persons/2025RUET01
@@ -107,6 +107,7 @@ https://www.worldcubeassociation.org/persons/2024CARV06
 https://www.worldcubeassociation.org/persons/2025PERE17
 https://www.worldcubeassociation.org/persons/2025BRAD02
 https://www.worldcubeassociation.org/persons/2024FARI04
+https://www.worldcubeassociation.org/persons/2025CERR03
 https://www.worldcubeassociation.org/persons/2024BORG02
 https://www.worldcubeassociation.org/persons/2019AMOR01
 https://www.worldcubeassociation.org/persons/2025BERT02
@@ -114,8 +115,8 @@ https://www.worldcubeassociation.org/persons/2025PERE43
 https://www.worldcubeassociation.org/persons/2023PORT17
 https://www.worldcubeassociation.org/persons/2024OLIV08
 https://www.worldcubeassociation.org/persons/2024CORD15
-https://www.worldcubeassociation.org/persons/2025BERT01
 https://www.worldcubeassociation.org/persons/2025ANAN04
+https://www.worldcubeassociation.org/persons/2025BERT01
 https://www.worldcubeassociation.org/persons/2025BORG08
 https://www.worldcubeassociation.org/persons/2022BOTT04
 https://www.worldcubeassociation.org/persons/2025FISC09
