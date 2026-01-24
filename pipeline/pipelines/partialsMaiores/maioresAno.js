@@ -40,6 +40,9 @@ export default function pipelineMaioresAno(championships, championshipsComps, pe
 
       winners[year] = {}
       for(let event of eventsIds){
+         const yearEventResults = yearPeopleResults.filter(r => r.eventId == event)
+         yearMaioresAnoData[event] = yearMaioresAnoData[event].filter(m => yearEventResults.some(r => r.personId == m.personId))
+
          winners[year][event] = yearMaioresAnoData[event][0]
 
          fs.writeFileSync(`./frontend/src/database/maioresAno/${year}/${event}.json`, JSON.stringify(yearMaioresAnoData[event]))

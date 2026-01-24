@@ -6,6 +6,7 @@ export default function abracmComparison(){
    const idsToNotCheck = [
       '2007CINO01',
       '2015IACO01',
+      '2017DAMA01',
    ]
 
    fetch('https://diogojs.pythonanywhere.com/ranking')

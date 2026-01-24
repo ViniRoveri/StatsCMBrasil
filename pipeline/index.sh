@@ -1,7 +1,7 @@
 rm -Rf ./database
 mkdir ./database
 
-curl -k https://www.worldcubeassociation.org/export/results/WCA_export.tsv.zip -L --output "./database/export.zip"
+curl -k https://www.worldcubeassociation.org/export/results/v2/tsv -L --output "./database/export.zip"
 
 unzip ./database/export.zip -d ./database
 

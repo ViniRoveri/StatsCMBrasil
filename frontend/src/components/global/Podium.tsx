@@ -15,7 +15,10 @@ export default function Podium(props: Props){
       <section className={container}>
          <div className={podium}>
             <div className={podiumStep}>
-               <PodiumPersonInfo borderColor="#C0C0C0" isRegional={props.isRegional} personData={props.podiumPeopleData[1]} personImageUrl={props.podiumImagesUrls[1]}/>
+               {props.podiumPeopleData.length > 1 ?
+                  <PodiumPersonInfo borderColor="#C0C0C0" isRegional={props.isRegional} personData={props.podiumPeopleData[1]} personImageUrl={props.podiumImagesUrls[1]}/>
+               : <></>}
+               
                <div className="border-l border-t h-[60px] w-full"/>
             </div>
             
@@ -25,7 +28,10 @@ export default function Podium(props: Props){
             </div>
             
             <div className={podiumStep}>
-               <PodiumPersonInfo borderColor="#CD7F32" isRegional={props.isRegional} personData={props.podiumPeopleData[2]} personImageUrl={props.podiumImagesUrls[2]}/>
+               {props.podiumPeopleData.length > 2 ?
+                  <PodiumPersonInfo borderColor="#CD7F32" isRegional={props.isRegional} personData={props.podiumPeopleData[2]} personImageUrl={props.podiumImagesUrls[2]}/>
+               : <></>}
+               
                <div className="border-r border-t h-[30px] w-full"/>
             </div>         
          </div>

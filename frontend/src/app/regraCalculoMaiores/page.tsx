@@ -41,11 +41,11 @@ export default function page(){
          
          <div className="mb-8">
             <Title>Pontos de Médias/Singles</Title>
-            <p>Médias e Singles seguem a mesma regra de pontuação, mesmo sendo calculados separadamente.</p>
-            <p>É apenas um cálculo por pessoa feito da seguinte forma:</p>
+            <p>Para Médias e Singles é feito apenas um cálculo por pessoa da seguinte forma:</p>
             <p>- Ranking Atual: O ranking que a melhor média/single da pessoa está no ranking do Brasil na WCA.</p>
-            <p>- Número no Top 100: A quantidade de médias/singles que a pessoa tem entre as 100 melhores médias/singles já feitas no Brasil.</p>
-            <p>- Formula Final: (101 - Ranking Atual) + Número no Top 100</p>
+            <p>- Médias Entre 100 Melhores: A quantidade de médias que a pessoa tem entre as 100 melhores médias já feitas no Brasil.</p>
+            <p>- Formula Final Médias: (101 - Ranking Atual) + Médias Entre 100 Melhores</p>
+            <p>- Formula Final Singles: 101 - Ranking Atual</p>
          </div>
          
          <div className="mb-8">

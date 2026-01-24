@@ -3,7 +3,6 @@ import championshipTypes from '../domain/constants/championshipTypes.js'
 import eventsIds from '../domain/constants/eventsIds.js'
 import rl from 'node:readline'
 import peoplesStates from '../domain/constants/peoplesStates.js'
-import peopleIdsUnableToFindState from '../domain/constants/peopleIdsUnableToFindState.js'
 import statesNames from '../domain/constants/statesNames.js'
 import statesInfo from '../domain/constants/statesInfo.js'
 
@@ -15,6 +14,8 @@ let peopleIdsToNotCheckState = peoplesStates.map(p => p.id)
 let peopleIdsToAddState = []
 let brazilCompsIds = []
 let compsWithStates = []
+let resultsIds = []
+const peopleWithStateAlreadyAdded = [...peopleIdsToNotCheckState]
 
 function filterChampionships(championships){
    let filteredChampionships = []
@@ -57,7 +58,7 @@ async function getTableJson(tableName){
    
                   championshipsIds.push(row[1])
                }; break;
-            case 'Persons':
+            case 'persons':
                if(row[4] == 'Brazil' && row[3] == '1'){
                   tableJson.push({
                      name: row[0],
@@ -66,45 +67,42 @@ async function getTableJson(tableName){
 
                   allPeopleIds.push(row[2])
                }; break;
-            case 'Results':
-               if(eventsIds.includes(row[9]) && 
-                  (allPeopleIds.includes(row[12]) || (championshipsIds.includes(row[8]) && (row[10] == 'f' || row[10] == 'c')))
+            case 'results':
+               if(eventsIds.includes(row[6]) && 
+                  (allPeopleIds.includes(row[8]) || (championshipsIds.includes(row[4]) && (row[5] == 'f' || row[5] == 'c')))
                ){
                   tableJson.push({
-                     pos: row[0],
-                     best: row[1],
-                     average: row[2],
-                     value1: row[3],
-                     value2: row[4],
-                     value3: row[5],
-                     value4: row[6],
-                     value5: row[7],
-                     competitionId: row[8],
-                     eventId: row[9],
-                     roundTypeId: row[10],
-                     personId: row[12],
-                     regionalSingleRecord: row[14],
-                     regionalAverageRecord: row[15]
+                     id: row[0],
+                     pos: row[1],
+                     best: row[2],
+                     average: row[3],
+                     competitionId: row[4],
+                     roundTypeId: row[5],
+                     eventId: row[6],
+                     personId: row[8],
+                     regionalSingleRecord: row[10],
+                     regionalAverageRecord: row[11],
                   })
    
-                  resultsCompetitionsIds.push(row[8])
+                  resultsCompetitionsIds.push(row[4])
+                  resultsIds.push(row[0])
                }; break;
-            case 'Competitions':
+            case 'competitions':
                if(championshipsIds.includes(row[0]) || resultsCompetitionsIds.includes(row[0])){
                   tableJson.push({
                      id: row[0],
                      name: row[1],
-                     year: row[16]
+                     year: row[14]
                   })
 
-                  if(resultsCompetitionsIds.includes(row[0]) && Number(row[16]) > latestYearWithResult) latestYearWithResult = Number(row[16])
+                  if(resultsCompetitionsIds.includes(row[0]) && Number(row[14]) > latestYearWithResult) latestYearWithResult = Number(row[14])
 
-                  if(row[8] == 'Brazil') brazilCompsIds.push(row[0])
+                  if(row[6] == 'Brazil') brazilCompsIds.push(row[0])
 
-                  const compState = statesNames.find(s => row[7].includes(s))
-                  if(compState) compsWithStates.push({id: row[0], state: compState}) 
+                  const compState = statesNames.find(s => row[5].includes(s))
+                  if(compState) compsWithStates.push({id: row[0], state: compState, date: {year: Number(row[14]), month: Number(row[15]), day: Number(row[16])}}) 
                }; break;
-            case 'RanksAverage':
+            case 'ranks_average':
                if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2])){
                   tableJson.push({
                      best: row[0],
@@ -113,7 +111,7 @@ async function getTableJson(tableName){
                      countryRank: row[5]
                   })
                }; break;
-            case 'RanksSingle':
+            case 'ranks_single':
                if(allPeopleIds.includes(row[1]) && eventsIds.includes(row[2])){
                   tableJson.push({
                      best: row[0],
@@ -135,74 +133,56 @@ async function getTableJson(tableName){
    })
 }
 
-function createRegionaisUtilsFiles(wcaExport){
+function createRegionaisData(wcaExport){
    console.log('Starting Regionais logic...')
 
-   function sortIdsByRank(ids){
-      ids.sort((a, b) => {
-         const aBestRankSingle = Math.min(...wcaExport.ranksSingle.filter(r => r.personId == a).map(r => r.countryRank))
-         const aBestRankAverage = Math.min(...wcaExport.ranksAverage.filter(r => r.personId == a).map(r => r.countryRank))
-         const aBestRank = Math.min(aBestRankSingle, aBestRankAverage)
-         
-         const bBestRankSingle = Math.min(...wcaExport.ranksSingle.filter(r => r.personId == b).map(r => r.countryRank))
-         const bBestRankAverage = Math.min(...wcaExport.ranksAverage.filter(r => r.personId == b).map(r => r.countryRank))
-         const bBestRank = Math.min(bBestRankSingle, bBestRankAverage)
-
-         return aBestRank - bBestRank
-      })
-   }
-
    let peopleIdsCompetedInBrazil = []
-   let peopleWithStatesCompeted = []
+   let peopleWithCompsWithStates = []
    for(let result of wcaExport.results){
-      if(brazilCompsIds.includes(result.competitionId) && !peopleIdsCompetedInBrazil.includes(result.personId) && peopleIdsToAddState.includes(result.personId)) {
-         peopleIdsCompetedInBrazil.push(result.personId)
+      if(brazilCompsIds.includes(result.competitionId) && !peopleIdsCompetedInBrazil.includes(result.personId)) peopleIdsCompetedInBrazil.push(result.personId)
 
+      if(brazilCompsIds.includes(result.competitionId) && !peopleWithStateAlreadyAdded.includes(result.personId) && !peopleWithCompsWithStates.some(p => p.id == result.personId)){
          const compWithState = compsWithStates.find(c => c.id == result.competitionId)
-         if(compWithState){
-            const personWithStates = peopleWithStatesCompeted.find(p => p.id == result.personId)
+         if(!compWithState) continue
 
-            if(personWithStates) {
-               personWithStates.states.push(compWithState.state)
-               personWithStates.comps++
-            } else peopleWithStatesCompeted.push({id: result.personId, states: [compWithState.state], comps: 1})
-         }
+         if(peopleWithCompsWithStates.some(p => p.id == result.personId && !p.compsWithStates.some(c => c.id == compWithState.id))){
+            peopleWithCompsWithStates.find(p => p.id == result.personId).compsWithStates.push(compWithState)
+         }else peopleWithCompsWithStates.push({id: result.personId, compsWithStates: [compWithState]})
       }
    }
-   peopleIdsCompetedInBrazil = peopleIdsCompetedInBrazil.filter(id => !peopleIdsUnableToFindState.includes(id))
-   
-   let peopleOnlyOneState = peopleWithStatesCompeted.filter(p => p.comps >= 5 && [...new Set(p.states)].length == 1)
-   let peopleIdsOnlyOneState = peopleOnlyOneState.map(p => p.id)
-   let peopleCompetedOnlyOneStateText = ''
-   sortIdsByRank(peopleIdsOnlyOneState)
-   for(let personId of peopleIdsOnlyOneState){
-      const personState = peopleOnlyOneState.find(p => p.id == personId).states[0]
-      peopleCompetedOnlyOneStateText += `{ id: '${personId}', state: '${statesInfo.find(i => i.name == personState).abbreviation}' }\n`
-   }
-   fs.writeFileSync('./regionaisUtils/peopleCompetedOnlyOneState.txt', peopleCompetedOnlyOneStateText)
-   
-   let peopleToAddStateText = ''
-   peopleIdsCompetedInBrazil = peopleIdsCompetedInBrazil.filter(id => !peopleIdsOnlyOneState.includes(id))
-   sortIdsByRank(peopleIdsCompetedInBrazil)
-   for(let personId of peopleIdsCompetedInBrazil){
-      peopleToAddStateText += `https://www.worldcubeassociation.org/persons/${personId}\n`
-   }
-   fs.writeFileSync('./regionaisUtils/peopleToAddState.txt', peopleToAddStateText)
 
-   const peopleIdsDidntCompeteInBrazil = peopleIdsToAddState.filter(id => !peopleIdsOnlyOneState.includes(id) && !peopleIdsCompetedInBrazil.includes(id) && !peopleIdsUnableToFindState.includes(id))
-   let didntCompeteInBrazilText = ''
-   sortIdsByRank(peopleIdsDidntCompeteInBrazil)
-   for(let personId of peopleIdsDidntCompeteInBrazil){
-      didntCompeteInBrazilText += `https://www.worldcubeassociation.org/persons/${personId}\n`
-   }
-   fs.writeFileSync('./regionaisUtils/didntCompeteInBrazil.txt', didntCompeteInBrazilText)
+   let newPeopleWithStates = []
+   for(let person of peopleWithCompsWithStates){
+      const firstCompStateName = person.compsWithStates.sort((a, b) => a.date.year - b.date.year || a.date.month - b.date.month || a.date.day - b.date.day)[0].state
+      const personState = statesInfo.find(s => s.name == firstCompStateName).abbreviation
 
-   let unableToFindStateText = ''
-   sortIdsByRank(peopleIdsUnableToFindState)
-   for(let personId of peopleIdsUnableToFindState){
-      if(personId) unableToFindStateText += `https://www.worldcubeassociation.org/persons/${personId}\n`
+      newPeopleWithStates.push({id: person.id, state: personState})
    }
-   fs.writeFileSync('./regionaisUtils/unableToFindState.txt', unableToFindStateText)
+
+   const updatedPeoplesStates = new Set(peoplesStates.concat(newPeopleWithStates))
+   let peoplesStatesText = 'const peoplesStates = [\n'
+   for(let personState of updatedPeoplesStates){
+      peoplesStatesText += `\t{ id: '${personState.id}', state: '${personState.state}' },\n`
+   }
+   peoplesStatesText += ']\n\n'
+   peoplesStatesText += 'export default peoplesStates'
+   fs.writeFileSync('./pipeline/domain/constants/peoplesStates.js', peoplesStatesText)
+
+   const peopleIdsWithoutState = peopleIdsToAddState.filter(id => !peopleWithCompsWithStates.some(p => p.id == id))
+
+   const peopleIdsUnableToFindState = peopleIdsWithoutState.filter(id => peopleIdsCompetedInBrazil.includes(id))
+   let peopleUnableToFindStateText = ''
+   for(let id of peopleIdsUnableToFindState){
+      peopleUnableToFindStateText += `https://www.worldcubeassociation.org/persons/${id}\n`
+   }
+   fs.writeFileSync('./regionaisUtils/peopleUnableToFindState.txt', peopleUnableToFindStateText)
+   
+   const peopleIdsNotCompetedInBrazil = peopleIdsWithoutState.filter(id => !peopleIdsCompetedInBrazil.includes(id))
+   let peopleIdsNotCompetedInBrazilText = ''
+   for(let id of peopleIdsNotCompetedInBrazil){
+      peopleIdsNotCompetedInBrazilText += `https://www.worldcubeassociation.org/persons/${id}\n`
+   }
+   fs.writeFileSync('./regionaisUtils/peopleNotCompetedInBrazil.txt', peopleIdsNotCompetedInBrazilText)
 
    console.log('Regionais logic finished sucessfully!')
 }
@@ -212,20 +192,19 @@ export default async function pipelineExport(){
 
    const wcaExport = {
       unfilteredChampionships: await getTableJson('championships'),
-      people: await getTableJson('Persons'),
-      results: await getTableJson('Results'),
-      competitions: await getTableJson('Competitions'),
-      ranksAverage: await getTableJson('RanksAverage'),
-      ranksSingle: await getTableJson('RanksSingle')
+      people: await getTableJson('persons'),
+      results: await getTableJson('results'),
+      competitions: await getTableJson('competitions'),
+      ranksAverage: await getTableJson('ranks_average'),
+      ranksSingle: await getTableJson('ranks_single')
    }
    wcaExport.championships = filterChampionships(wcaExport.unfilteredChampionships)
-
+   
    const today = new Date()
    wcaExport.resultsAreComplete = latestYearWithResult >= today.getFullYear()
-
    fs.writeFileSync('./wcaExport.json', JSON.stringify(wcaExport))
 
-   createRegionaisUtilsFiles(wcaExport)
+   createRegionaisData(wcaExport)
    
    console.log('Export pipepline finished sucessfully!')
 }

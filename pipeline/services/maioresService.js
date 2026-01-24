@@ -90,12 +90,10 @@ const maioresService = {
       return (averageRecordsPoints * 3) + singleRecordsPoints
    },
 
-   calculateSinglePoints(personId, ranksSingle, top100SinglesResultsOat){
+   calculateSinglePoints(personId, ranksSingle){
       const currentSingleRanking = ranksSingle.find(r => r.personId == personId).countryRank
 
-      const numberInTop100 = top100SinglesResultsOat.filter(r => r.personId == personId).length
-
-      const singlePoints = (101 - currentSingleRanking) + numberInTop100
+      const singlePoints = 101 - currentSingleRanking
 
       return singlePoints > 0 ? singlePoints : 0
    },
@@ -118,19 +116,6 @@ const maioresService = {
       const top25RanksSinglePeopleIds = ranksSingle.filter(r => r.eventId == eventId && r.countryRank <= 25).map(r => r.personId)
       const top25PeopleResults = peopleResults.filter(r => r.eventId == eventId && top25RanksSinglePeopleIds.includes(r.personId))
       const top100AveragesResultsOat = top25PeopleResults.filter(r => r.average > 0).sort((a, b) => a.average - b.average).slice(0, 100)
-      let top25PeopleSingles = []
-      for(let result of top25PeopleResults){
-         const resultTimes = [
-            {personId: result.personId, single: result.value1}, 
-            {personId: result.personId, single: result.value2}, 
-            {personId: result.personId, single: result.value3}, 
-            {personId: result.personId, single: result.value4}, 
-            {personId: result.personId, single: result.value5}
-         ]
-
-         top25PeopleSingles = top25PeopleSingles.concat(resultTimes)
-      }
-      const top100SinglesResultsOat = top25PeopleSingles.filter(r => r.single > 0).sort((a, b) => a.single - b.single).slice(0, 100)
       
       let qualifiedPeopleIds = this.getQualifiedPeopleIdsByEvent(championships, ranksAverage, results, eventId, peopleResults)
       if(legalPeopleIds){
@@ -145,7 +130,7 @@ const maioresService = {
          const championshipPoints = Math.round(this.calculateChampionshipPoints(championships, results, eventId, personId) * 8)
          const recordPoints = Math.round(this.calculateRecordPoints(personResults, eventId) * 4)
          const averagePoints = Math.round(this.calculateAveragePoints(personId, ranksAverage, top100AveragesResultsOat) / 4)
-         const singlePoints = Math.round(this.calculateSinglePoints(personId, ranksSingle, top100SinglesResultsOat) / 8)
+         const singlePoints = Math.round(this.calculateSinglePoints(personId, ranksSingle) / 8)
 
          const personName = people.find(p => p.id == personId).name
 

@@ -1,6 +1,12 @@
 import axios from 'axios'
 
 const utilityService = {
+   async getMultipleResultsAttempts(results){
+      for(let result of results){
+         await this.getResultAttempts(result)
+      }
+   },
+
    async getPersonWcaImageUrlById(peopleIds){
       let urls = []
 
@@ -14,6 +20,12 @@ const utilityService = {
       }
       
       return urls
+   },
+
+   async getResultAttempts(result){
+      const apiReq = (await axios.get(`https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/master/api/results/${result.competitionId}/${result.eventId}.json`)).data
+      const recordResult = apiReq.items.find(r => r.personId == result.personId && r.average == result.average && r.best == result.best)
+      result.attempts = recordResult.solves.filter(s => s != 0)
    },
 
    formatNumber(number){

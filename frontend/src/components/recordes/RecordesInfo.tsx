@@ -7,9 +7,11 @@ type Props = {
    type: string
 }
 
-export default function RecordesInfo(props: Props){
+export default async function RecordesInfo(props: Props){
    let headers = ['Resultado', 'Recorde', 'Nome', 'Competição']
    if(props.type == 'average') headers.push('Solves')
+
+   await utilityService.getMultipleResultsAttempts(props.recordesData)
 
    return (
       <Table 
@@ -26,11 +28,7 @@ export default function RecordesInfo(props: Props){
             ]
             
             if(props.type == 'average'){
-               let tempos = [result.value1, result.value2, result.value3]
-               if(result.value4 != '0') tempos.push(result.value4)
-               if(result.value5 != '0') tempos.push(result.value5)
-
-               const temposFormatados = tempos.map(t => {
+               const temposFormatados = result.attempts.map((t: any) => {
                   if(Number(t) == -1) return 'DNF'
 
                   if(result.eventId == '333fm') return t
