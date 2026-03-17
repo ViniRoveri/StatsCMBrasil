@@ -23,8 +23,8 @@ https://www.worldcubeassociation.org/persons/2023SOUZ01
 https://www.worldcubeassociation.org/persons/2024SCHU16
 https://www.worldcubeassociation.org/persons/2022GOES02
 https://www.worldcubeassociation.org/persons/2022BLOC03
-https://www.worldcubeassociation.org/persons/2024DEGA01
 https://www.worldcubeassociation.org/persons/2025ALFA03
+https://www.worldcubeassociation.org/persons/2024DEGA01
 https://www.worldcubeassociation.org/persons/2024REIN02
 https://www.worldcubeassociation.org/persons/2024AZEV08
 https://www.worldcubeassociation.org/persons/2016BARA02
@@ -52,8 +52,8 @@ https://www.worldcubeassociation.org/persons/2023GORG01
 https://www.worldcubeassociation.org/persons/2017BARR08
 https://www.worldcubeassociation.org/persons/2022DOTT01
 https://www.worldcubeassociation.org/persons/2019VECO01
-https://www.worldcubeassociation.org/persons/2023PAIX01
 https://www.worldcubeassociation.org/persons/2025ALME01
+https://www.worldcubeassociation.org/persons/2023PAIX01
 https://www.worldcubeassociation.org/persons/2024DEME02
 https://www.worldcubeassociation.org/persons/2023VIAN02
 https://www.worldcubeassociation.org/persons/2025SILV22
@@ -93,6 +93,7 @@ https://www.worldcubeassociation.org/persons/2023LIMA17
 https://www.worldcubeassociation.org/persons/2024IKAW01
 https://www.worldcubeassociation.org/persons/2025MACE04
 https://www.worldcubeassociation.org/persons/2024GOME26
+https://www.worldcubeassociation.org/persons/2024LADE01
 https://www.worldcubeassociation.org/persons/2023VEIS01
 https://www.worldcubeassociation.org/persons/2026LIBE01
 https://www.worldcubeassociation.org/persons/2025SOUZ19
@@ -110,7 +111,6 @@ https://www.worldcubeassociation.org/persons/2024SANT95
 https://www.worldcubeassociation.org/persons/2022BALB02
 https://www.worldcubeassociation.org/persons/2026AUDU01
 https://www.worldcubeassociation.org/persons/2024MOTA02
-https://www.worldcubeassociation.org/persons/2024LADE01
 https://www.worldcubeassociation.org/persons/2025VINN03
 https://www.worldcubeassociation.org/persons/2024ARAU15
 https://www.worldcubeassociation.org/persons/2025BRAD02
