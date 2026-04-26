@@ -9798,6 +9798,10 @@ const peoplesStates = [
 	{ id: '2026SILV15', state: 'SP' },
 	{ id: '2026ASSI01', state: 'SP' },
 	{ id: '2026ASSI02', state: 'SP' },
+	{ id: '2026FERR10', state: 'SP' },
+	{ id: '2026OLIV17', state: 'SP' },
+	{ id: '2026YEHV01', state: 'SP' },
+	{ id: '2026FREY01', state: 'SP' },
 ]
 
 export default peoplesStates
