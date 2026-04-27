@@ -102,6 +102,7 @@ https://www.worldcubeassociation.org/persons/2023VEIS01
 https://www.worldcubeassociation.org/persons/2026LIBE01
 https://www.worldcubeassociation.org/persons/2025SOUZ19
 https://www.worldcubeassociation.org/persons/2018JUNI07
+https://www.worldcubeassociation.org/persons/2024SANT95
 https://www.worldcubeassociation.org/persons/2015DION04
 https://www.worldcubeassociation.org/persons/2022COIM04
 https://www.worldcubeassociation.org/persons/2025TABA01
@@ -111,7 +112,6 @@ https://www.worldcubeassociation.org/persons/2023MELO02
 https://www.worldcubeassociation.org/persons/2024MART60
 https://www.worldcubeassociation.org/persons/2025BERC01
 https://www.worldcubeassociation.org/persons/2024POLI09
-https://www.worldcubeassociation.org/persons/2024SANT95
 https://www.worldcubeassociation.org/persons/2022BALB02
 https://www.worldcubeassociation.org/persons/2026AUDU01
 https://www.worldcubeassociation.org/persons/2026COST05
