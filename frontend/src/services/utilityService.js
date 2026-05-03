@@ -4,6 +4,7 @@ const utilityService = {
    },
 
    formatTime(time){
+      time = String(time)
       if(Number(time) >= 6000){
          const ms = time.slice(-2)
          const totalSeconds = Number(time.slice(0, -2))

@@ -19,7 +19,7 @@ if(wcaExport.resultsAreComplete){
    
    pipelineCampeoes(wcaExport)
    
-   pipelineRecordes(wcaExport)
+   await pipelineRecordes(wcaExport)
 
    pipelineRegionais(wcaExport)
 
