@@ -1,16 +1,17 @@
 import PersonLink from "@/components/global/PersonLink"
 import Podium from "@/components/global/Podium"
 import Table from "@/components/global/Table"
+import databaseService from "@/services/databaseService"
 import utilityService from '@/services/utilityService'
 
 type Props = {
    maioresHistoriaEventData: any[]
 }
 
-export default async function MaioresHistoriaInfo(props: Props){
+export default function MaioresHistoriaInfo(props: Props){
    const podiumPeopleData = props.maioresHistoriaEventData.slice(0, 3)
    const podiumPeopleIds = podiumPeopleData.map(p => p.personId)
-   const podiumImagesUrls = await utilityService.getPersonWcaImageUrlById(podiumPeopleIds)
+   const podiumImagesUrls = databaseService.getPeopleAvatarsUrlById(podiumPeopleIds)
    
    return (
       <>

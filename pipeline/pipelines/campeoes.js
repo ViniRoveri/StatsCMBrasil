@@ -15,12 +15,8 @@ function compareString(a, b){
    return 0
 }
 
-export default function pipelineCampeoes(){
+export default function pipelineCampeoes(wcaExport){
    console.log('Starting Campeoes pipepline...')
-
-   const wcaExport = JSON.parse(
-      fs.readFileSync("./wcaExport.json")
-   )
 
    if(!fs.existsSync('./frontend/src/database/campeoes')) fs.mkdirSync('./frontend/src/database/campeoes')
    if(!fs.existsSync('./frontend/src/database/campeoes/maiores')) fs.mkdirSync('./frontend/src/database/campeoes/maiores')

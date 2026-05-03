@@ -1,12 +1,9 @@
 import fs from 'fs'
 import eventsIds from '../domain/constants/eventsIds.js'
+import recordesService from '../services/recordesService.js'
 
-export default function pipelineRecordes(){
+export default function pipelineRecordes(wcaExport){
    console.log('Starting Recordes pipepline...')
-
-   const wcaExport = JSON.parse(
-      fs.readFileSync("./wcaExport.json")
-   )
 
    const people = wcaExport.people
    const peopleIds = people.map(p => p.id)
@@ -28,6 +25,8 @@ export default function pipelineRecordes(){
 
       const resultPerson = wcaExport.people.find(c => c.id == result.personId)
       result.personName = resultPerson.name
+
+      result.attempts = recordesService.getRecordResultAttempts(result)
       
       if(result.regionalAverageRecord != 'NULL') averageRecords[result.eventId].push(result)
       if(result.regionalSingleRecord != 'NULL') singleRecords[result.eventId].push(result)

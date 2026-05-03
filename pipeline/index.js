@@ -4,6 +4,7 @@ import pipelineRecordes from './pipelines/recordes.js'
 import pipelineCampeoes from "./pipelines/campeoes.js"
 import fs from 'fs'
 import pipelineRegionais from "./pipelines/regionais.js"
+import pipelineAvatars from "./pipelines/avatars.js"
 
 console.log('Starting pipeline...')
 
@@ -14,13 +15,15 @@ const wcaExport = JSON.parse(
 )
 
 if(wcaExport.resultsAreComplete){
-   pipelineMaiores()
+   pipelineMaiores(wcaExport)
    
-   pipelineCampeoes()
+   pipelineCampeoes(wcaExport)
    
-   pipelineRecordes()
+   pipelineRecordes(wcaExport)
 
-   pipelineRegionais()
+   pipelineRegionais(wcaExport)
+
+   await pipelineAvatars(wcaExport)
 }else{
    console.log('Pipeline not executed, results are incomplete.')
 }

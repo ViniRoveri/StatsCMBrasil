@@ -2,12 +2,8 @@ import fs from 'fs'
 import peoplesStates from '../domain/constants/peoplesStates.js'
 import eventsIds from '../domain/constants/eventsIds.js'
 
-export default function pipelineRegionais(){
+export default function pipelineRegionais(wcaExport){
    console.log('Starting Regionais pipepline...')
-   
-   const wcaExport = JSON.parse(
-      fs.readFileSync("./wcaExport.json")
-   )
 
    let regionsData = {}
 

@@ -1,5 +1,5 @@
-import utilityService from "@/services/utilityService"
 import PersonLink from "../global/PersonLink"
+import databaseService from "@/services/databaseService"
 
 type Props = {
    campeaoData: any
@@ -9,8 +9,8 @@ const container = `border flex max-w-[525px] p-4 rounded-[20px] w-full`
 const image = `bg-center bg-cover bg-no-repeat border-[#FFD700] border-2 h-[100px] rounded-full w-[100px]`
 const info = `flex flex-col gap-4 grow justify-center px-4 w-min`
 
-export default async function CampeaoCard(props: Props){
-   const personImageUrlArray = await utilityService.getPersonWcaImageUrlById([props.campeaoData.personId])
+export default function CampeaoCard(props: Props){
+   const personImageUrlArray = databaseService.getPeopleAvatarsUrlById([props.campeaoData.personId])
    const personImageUrl = personImageUrlArray[0]
 
    return (

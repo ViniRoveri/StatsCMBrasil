@@ -2,16 +2,17 @@ import utilityService from "@/services/utilityService"
 import Table from "../global/Table"
 import Podium from "../global/Podium"
 import PersonLink from "../global/PersonLink"
+import databaseService from "@/services/databaseService"
 
 type Props = {
    rankingRegional: any[]
    isRegiao: boolean
 }
 
-export default async function RegionaisInfo(props: Props){
+export default function RegionaisInfo(props: Props){
    const podiumPeopleData = props.rankingRegional.slice(0, 3)
    const podiumPeopleIds = podiumPeopleData.map(p => p.personId)
-   const podiumImagesUrls = await utilityService.getPersonWcaImageUrlById(podiumPeopleIds)
+   const podiumImagesUrls = databaseService.getPeopleAvatarsUrlById(podiumPeopleIds)
    
    let headers = ['#', 'Nome', 'Resultado']
    if(props.isRegiao) headers.push('Estado')

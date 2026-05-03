@@ -1,3 +1,4 @@
+import databaseService from "@/services/databaseService"
 import utilityService from "@/services/utilityService"
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
@@ -14,8 +15,8 @@ const image = `bg-center bg-cover bg-no-repeat border-[#FFD700] border-2 h-[100p
 const info = `flex flex-col gap-2 grow justify-center px-4 text-[20px] w-min`
 const yearInfo = `flex items-center justify-between`
 
-export default async function YearWinnerCard(props: Props){
-   const personImageUrlArray = await utilityService.getPersonWcaImageUrlById([props.winner.personId])
+export default function YearWinnerCard(props: Props){
+   const personImageUrlArray = databaseService.getPeopleAvatarsUrlById([props.winner.personId])
    const personImageUrl = personImageUrlArray[0]
 
    return (

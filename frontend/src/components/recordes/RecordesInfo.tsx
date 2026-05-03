@@ -11,8 +11,6 @@ export default async function RecordesInfo(props: Props){
    let headers = ['Resultado', 'Recorde', 'Nome', 'Competição']
    if(props.type == 'average') headers.push('Solves')
 
-   await utilityService.getMultipleResultsAttempts(props.recordesData)
-
    return (
       <Table 
          headers={headers}

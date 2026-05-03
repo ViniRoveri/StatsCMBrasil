@@ -52,7 +52,7 @@ export default function page(){
             <Title>Pontuação Total</Title>
             <p>A soma dos pontos de cada pessoa no evento dando os pesos devidos aos aspectos mais importantes.</p>
             <p>Após a aplicação dos seguintes pesos, os valores de cada pontuação são arredondados para o número inteiro mais próximo antes da soma final.</p>
-            <p>- Formula Final: (Pontos de Competições * 8) + (Pontos de Recordes * 4) + (Pontos de Médias / 4) + (Pontos de Singles / 8)</p>
+            <p>- Formula Final: (Pontos de Competições * 8) + (Pontos de Recordes * 7) + (Pontos de Médias / 4) + (Pontos de Singles / 8)</p>
          </div>
          
          <div>

@@ -128,7 +128,7 @@ const maioresService = {
          const personResults = qualifiedPeopleResults.filter(r => r.personId == personId)
 
          const championshipPoints = Math.round(this.calculateChampionshipPoints(championships, results, eventId, personId) * 8)
-         const recordPoints = Math.round(this.calculateRecordPoints(personResults, eventId) * 4)
+         const recordPoints = Math.round(this.calculateRecordPoints(personResults, eventId) * 7)
          const averagePoints = Math.round(this.calculateAveragePoints(personId, ranksAverage, top100AveragesResultsOat) / 4)
          const singlePoints = Math.round(this.calculateSinglePoints(personId, ranksSingle) / 8)
 

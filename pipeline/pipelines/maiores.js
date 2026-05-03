@@ -1,13 +1,8 @@
 import pipelineMaioresHistoria from './partialsMaiores/maioresHistoria.js'
 import pipelineMaioresAno from './partialsMaiores/maioresAno.js'
-import fs from 'fs'
 
-export default function pipelineMaiores(){
+export default function pipelineMaiores(wcaExport){
    console.log('Starting Maiores pipepline...')
-
-   const wcaExport = JSON.parse(
-      fs.readFileSync("./wcaExport.json")
-   )
 
    const championships = wcaExport.championships
    const championshipsIds = championships.map(c => c.competition_id)

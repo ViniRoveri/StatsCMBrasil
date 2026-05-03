@@ -5,6 +5,9 @@ curl -k https://www.worldcubeassociation.org/export/results/v2/tsv -L --output "
 
 unzip ./database/export.zip -d ./database
 
+cd pipeline
+npm i
+cd ..
 node ./pipeline/index.js
 
 rm -Rf ./database

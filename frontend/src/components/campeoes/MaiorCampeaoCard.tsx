@@ -1,5 +1,5 @@
-import utilityService from "@/services/utilityService"
 import PersonLink from "../global/PersonLink"
+import databaseService from "@/services/databaseService"
 
 type Props = {
    campeaoData: any
@@ -11,8 +11,8 @@ const image = `bg-center bg-cover bg-no-repeat border-[#FFD700] border-2 h-[100p
 const info = `flex flex-col gap-4 grow justify-center px-4 w-min`
 const titlesList = `text-[20px]`
 
-export default async function MaiorCampeaoCard(props: Props){
-   const personImageUrlArray = await utilityService.getPersonWcaImageUrlById([props.campeaoData.personId])
+export default function MaiorCampeaoCard(props: Props){
+   const personImageUrlArray = databaseService.getPeopleAvatarsUrlById([props.campeaoData.personId])
    const personImageUrl = personImageUrlArray[0]
    
    return (
