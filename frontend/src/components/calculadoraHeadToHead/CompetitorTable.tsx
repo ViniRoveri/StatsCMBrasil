@@ -6,6 +6,7 @@ import $ from 'jquery'
 type Props = {
    competitorIndex: number
    currentWinningAvg: string
+   switchUpdateAverages: boolean
 }
 
 const tableHeaders = ['1', '2', '3', '4', '5', 'Avg', 'BPA', 'WPA', 'To Win']
@@ -228,7 +229,7 @@ export default function CompetitorTable(props: Props){
 
    useEffect(()=>{
       updateAverages()
-   }, [props.currentWinningAvg])
+   }, [props.currentWinningAvg, props.switchUpdateAverages])
 
    return (
       <form autoComplete="off" className={container}>
