@@ -1,25 +1,30 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import Table from "../global/Table";
 import TimeInput from "./TimeInput";
 import $ from 'jquery'
 
 type Props = {
+   competitorCalcs: any
    competitorIndex: number
    currentWinningAvg: string
+   otherCompetitorCalcs: any
+   setCompetitorCalcs: Dispatch<SetStateAction<any>>
    switchUpdateAverages: boolean
+   updateApi: Function
 }
 
 const tableHeaders = ['1', '2', '3', '4', '5', 'Avg', 'BPA', 'WPA', 'To Win']
 
 const container = `mb-4`
 const containerCompetitorName = `max-w-[777px] mx-auto`
-const competitorName = `bg-transparent font-title fw-bold mb-4 text-[22px] w-full`
+const competitorName = `bg-transparent font-title mb-4 text-[22px] w-full`
 
 export default function CompetitorTable(props: Props){
-   const [avg, setAvg] = useState('-')
-   const [bpa, setBpa] = useState('-')
-   const [wpa, setWpa] = useState('-')
-   const [toWin, setToWin] = useState('-')
+   function setCalc(field: string, value: string){
+      props.setCompetitorCalcs((prev: any) => {
+         return { ...prev, [field]: value }
+      })
+   }
 
    function updateAverages(){
       const timesStrings = [
@@ -44,35 +49,35 @@ export default function CompetitorTable(props: Props){
       }
 
       if(times.filter(i => i == 'DNF').length >= 2){
-         setAvg('DNF')
+         setCalc('avg', 'DNF')
 
-         setBpa('-')
-         setWpa('-')
-         setToWin('-')
+         setCalc('bpa', '-')
+         setCalc('wpa', '-')
+         setCalc('toWin', '-')
       }
       else if(times.length == 5){
          updateAvg(times)
 
-         setBpa('-')
-         setWpa('-')
-         setToWin('-')
+         setCalc('bpa', '-')
+         setCalc('wpa', '-')
+         setCalc('toWin', '-')
       }else if(times.length == 4){
          updateBpa(times)
          updateWpa(times)
          updateToWin(times)
 
-         setAvg('-')
+         setCalc('avg', '-')
       }else if(times.length == 3){
          updateToWin(times)
 
-         setAvg('-')
-         setBpa('-')
-         setWpa('-')
+         setCalc('avg', '-')
+         setCalc('bpa', '-')
+         setCalc('wpa', '-')
       }else{
-         setAvg('-')
-         setBpa('-')
-         setWpa('-')
-         setToWin('-')
+         setCalc('avg', '-')
+         setCalc('bpa', '-')
+         setCalc('wpa', '-')
+         setCalc('toWin', '-')
       }
    }
 
@@ -83,9 +88,7 @@ export default function CompetitorTable(props: Props){
 
       const newAvg = calculateAverage(sortedTimes)
 
-      setAvg(
-         formatTime(newAvg)
-      )
+      setCalc('avg', formatTime(newAvg))
    }
 
    function updateBpa(times: (number | string)[]){
@@ -94,14 +97,12 @@ export default function CompetitorTable(props: Props){
 
       const bpa = calculateAverage(sortedTimes)
 
-      setBpa(
-         formatTime(bpa)
-      )
+      setCalc('bpa', formatTime(bpa))
    }
 
    function updateWpa(times: (number | string)[]){
       if(times.includes('DNF')){
-         setWpa('DNF')
+         setCalc('wpa', 'DNF')
          return
       }
 
@@ -110,19 +111,32 @@ export default function CompetitorTable(props: Props){
 
       const wpa = calculateAverage(sortedTimes)
 
-      setWpa(
-         formatTime(wpa)
-      )
+      setCalc('wpa', formatTime(wpa))
    }
 
    function updateToWin(times: (number | string)[]){
-      if(!props.currentWinningAvg){
-         setToWin('-')
+      if(!props.currentWinningAvg && props.otherCompetitorCalcs.avg == '-'){
+         setCalc('toWin', '-')
          return
       }
 
-      const unformattedCurrentWinningAverage = unformatTime(props.currentWinningAvg)
-      const targetSumString = ((unformattedCurrentWinningAverage - 0.01) * 3).toFixed(2)
+      const unformattedCurrentWinningAverage = props.currentWinningAvg ? unformatTime(props.currentWinningAvg) : 0
+      const unformattedOtherCompetitorAverage = props.otherCompetitorCalcs.avg != '-' ? unformatTime(props.otherCompetitorCalcs.avg) : 0
+      let currentBestAvg
+      if(!unformattedCurrentWinningAverage){
+         currentBestAvg = unformattedOtherCompetitorAverage
+      }else if(!unformattedOtherCompetitorAverage){
+         currentBestAvg = unformattedCurrentWinningAverage
+      }else if(unformattedCurrentWinningAverage < unformattedOtherCompetitorAverage){
+         currentBestAvg = unformattedCurrentWinningAverage
+      }else if(unformattedOtherCompetitorAverage < unformattedCurrentWinningAverage){
+         currentBestAvg = unformattedOtherCompetitorAverage
+      }else{
+         currentBestAvg = unformattedCurrentWinningAverage
+      }
+
+      
+      const targetSumString = ((currentBestAvg - 0.01) * 3).toFixed(2)
       const targetSum = Number(targetSumString)
 
       const sortedTimes = sortTimes(times)
@@ -135,7 +149,7 @@ export default function CompetitorTable(props: Props){
       }
 
       if(consideredTimes.includes('DNF')){
-         setToWin('-')
+         setCalc('toWin', '-')
          return
       }
 
@@ -147,7 +161,7 @@ export default function CompetitorTable(props: Props){
       }
 
       if(times.length == 4 && currentSum > targetSum){
-         setToWin('N/P')
+         setCalc('toWin', 'N/P')
          return
       }
 
@@ -157,21 +171,17 @@ export default function CompetitorTable(props: Props){
       const worstTime = sortedTimes[sortedTimes.length - 1]
       if(times.length == 3){
          if(typeof bestTime != 'string' && necessaryTime < bestTime){
-            setToWin("-")
+            setCalc('toWin', "-")
          }else{
-            setToWin(
-               formatTime(necessaryTime)
-            )
+            setCalc('toWin', formatTime(necessaryTime))
          }
       }else{
          if(typeof bestTime != 'string' && necessaryTime < bestTime){
-            setToWin('N/P')
+            setCalc('toWin', 'N/P')
          }else if(typeof worstTime != 'string' && necessaryTime >= worstTime){
-            setToWin('W')
+            setCalc('toWin', 'W')
          }else{
-            setToWin(
-               formatTime(necessaryTime)
-            )
+            setCalc('toWin', formatTime(necessaryTime))
          }
       }
    }
@@ -227,14 +237,14 @@ export default function CompetitorTable(props: Props){
       })
    }
 
-   useEffect(()=>{
+   useEffect(() => {
       updateAverages()
-   }, [props.currentWinningAvg, props.switchUpdateAverages])
+   }, [props.currentWinningAvg, props.otherCompetitorCalcs.avg, props.switchUpdateAverages])
 
    return (
       <form autoComplete="off" className={container}>
          <div className={containerCompetitorName}>
-            <input className={competitorName} maxLength={50} placeholder='Nome do Competidor'/>
+            <input className={competitorName} id={props.competitorIndex + '_name'} maxLength={50} onBlur={() => props.updateApi()} placeholder='Nome do Competidor'/>
          </div>
 
          <Table notFixed={true} headers={tableHeaders} rows={[[
@@ -243,10 +253,10 @@ export default function CompetitorTable(props: Props){
             <TimeInput id={props.competitorIndex + '_3'} onBlur={updateAverages} width={57}/>,
             <TimeInput id={props.competitorIndex + '_4'} onBlur={updateAverages} width={57}/>,
             <TimeInput id={props.competitorIndex + '_5'} onBlur={updateAverages} width={57}/>,
-            avg,
-            bpa,
-            wpa,
-            toWin
+            props.competitorCalcs.avg,
+            props.competitorCalcs.bpa,
+            props.competitorCalcs.wpa,
+            props.competitorCalcs.toWin
          ]]}/>
       </form>
    )

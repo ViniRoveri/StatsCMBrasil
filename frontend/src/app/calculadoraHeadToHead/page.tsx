@@ -2,16 +2,74 @@
 import CalculadoraButtons from "@/components/calculadoraHeadToHead/CalculadoraButtons";
 import CompetitorTable from "@/components/calculadoraHeadToHead/CompetitorTable";
 import CurrentWinningAverage from "@/components/calculadoraHeadToHead/CurrentWinningAverage";
+import Modal from "@/components/global/Modal";
 import Title from "@/components/global/Title";
-import { useState } from "react";
+import calculadoraDatabaseService from "@/services/calculadoraDatabaseService";
+import { ReactNode, useEffect, useState } from "react";
+import $ from 'jquery'
 
 export default function page(){
    const [currentWinningAverage, setCurrentWinningAverage] = useState('')
+   const [apiId, setApiId] = useState('')
    const [switchUpdateAverages, setSwitchUpdateAverages] = useState(false)
+   const [modalData, setModalData] = useState<{ title: string, body: ReactNode } | null>(null)
+   
+   const emptyCompetitorCalcs = {
+      bpa: '-',
+      wpa: '-',
+      toWin: '-',
+      avg: '-'
+   }
+   const [competitor1Calcs, setCompetitor1Calcs] = useState(emptyCompetitorCalcs)
+   const [competitor2Calcs, setCompetitor2Calcs] = useState(emptyCompetitorCalcs)
+
+   function getCalculadoraData(){
+      return {
+         competitor1Name: $('#0_name').val(),
+         competitor1Time1: $('#0_1').val(),
+         competitor1Time2: $('#0_2').val(),
+         competitor1Time3: $('#0_3').val(),
+         competitor1Time4: $('#0_4').val(),
+         competitor1Time5: $('#0_5').val(),
+         competitor1Bpa: competitor1Calcs.bpa,
+         competitor1Wpa: competitor1Calcs.wpa,
+         competitor1ToWin: competitor1Calcs.toWin,
+         competitor1Avg: competitor1Calcs.avg,
+         
+         competitor2Name: $('#1_name').val(),
+         competitor2Time1: $('#1_1').val(),
+         competitor2Time2: $('#1_2').val(),
+         competitor2Time3: $('#1_3').val(),
+         competitor2Time4: $('#1_4').val(),
+         competitor2Time5: $('#1_5').val(),
+         competitor2Bpa: competitor2Calcs.bpa,
+         competitor2Wpa: competitor2Calcs.wpa,
+         competitor2ToWin: competitor2Calcs.toWin,
+         competitor2Avg: competitor2Calcs.avg
+      }
+   }
+
+   async function updateApi(){
+      if(!apiId) return
+
+      const calculadoraData = getCalculadoraData()
+      
+      const success = await calculadoraDatabaseService.update(apiId, calculadoraData)
+      if(!success){
+         setModalData({ 
+            title: 'Erro ao atualizar a API.', 
+            body: 'Ocorreu um erro ao atualizar a API. Tente novamente mais tarde.' 
+         })
+      }
+   }
 
    function updateAverages(){
       setSwitchUpdateAverages(!switchUpdateAverages)
    }
+
+   useEffect(() => {
+      updateApi()
+   }, [apiId, competitor1Calcs, competitor2Calcs])
 
    return (
       <>
@@ -19,13 +77,15 @@ export default function page(){
          <Title>Calculadora de Head to Head</Title>
       </div>
 
-      <CurrentWinningAverage setCurrentWinningAverage={setCurrentWinningAverage}/>
+      <CurrentWinningAverage setCurrentWinningAverage={setCurrentWinningAverage} />
 
-      <CompetitorTable competitorIndex={0} currentWinningAvg={currentWinningAverage} switchUpdateAverages={switchUpdateAverages}/>
+      <CompetitorTable competitorCalcs={competitor1Calcs} competitorIndex={0} currentWinningAvg={currentWinningAverage} otherCompetitorCalcs={competitor2Calcs} setCompetitorCalcs={setCompetitor1Calcs} switchUpdateAverages={switchUpdateAverages} updateApi={updateApi}/>
 
-      <CompetitorTable competitorIndex={1} currentWinningAvg={currentWinningAverage} switchUpdateAverages={switchUpdateAverages}/>
+      <CompetitorTable competitorCalcs={competitor2Calcs} competitorIndex={1} currentWinningAvg={currentWinningAverage} otherCompetitorCalcs={competitor1Calcs} setCompetitorCalcs={setCompetitor2Calcs} switchUpdateAverages={switchUpdateAverages} updateApi={updateApi}/>
 
-      <CalculadoraButtons updateAverages={updateAverages}/>
+      <CalculadoraButtons competitor1Calcs={competitor1Calcs} competitor2Calcs={competitor2Calcs} getCalculadoraData={getCalculadoraData} setApiId={setApiId} setModalData={setModalData} updateAverages={updateAverages}/>
+      
+      <Modal modalData={modalData} setModalData={setModalData}/>
       </>
    )
 }
