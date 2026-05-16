@@ -25,27 +25,31 @@ export default function page(){
 
    function getCalculadoraData(){
       return {
-         competitor1Name: $('#0_name').val(),
-         competitor1Time1: $('#0_1').val(),
-         competitor1Time2: $('#0_2').val(),
-         competitor1Time3: $('#0_3').val(),
-         competitor1Time4: $('#0_4').val(),
-         competitor1Time5: $('#0_5').val(),
-         competitor1Bpa: competitor1Calcs.bpa,
-         competitor1Wpa: competitor1Calcs.wpa,
-         competitor1ToWin: competitor1Calcs.toWin,
-         competitor1Avg: competitor1Calcs.avg,
-         
-         competitor2Name: $('#1_name').val(),
-         competitor2Time1: $('#1_1').val(),
-         competitor2Time2: $('#1_2').val(),
-         competitor2Time3: $('#1_3').val(),
-         competitor2Time4: $('#1_4').val(),
-         competitor2Time5: $('#1_5').val(),
-         competitor2Bpa: competitor2Calcs.bpa,
-         competitor2Wpa: competitor2Calcs.wpa,
-         competitor2ToWin: competitor2Calcs.toWin,
-         competitor2Avg: competitor2Calcs.avg
+         competitor1: {
+            name: $('#0_name').val(),
+            time1: $('#0_1').val(),
+            time2: $('#0_2').val(),
+            time3: $('#0_3').val(),
+            time4: $('#0_4').val(),
+            time5: $('#0_5').val(),
+            bpa: competitor1Calcs.bpa,
+            wpa: competitor1Calcs.wpa,
+            toWin: competitor1Calcs.toWin,
+            avg: competitor1Calcs.avg,
+         },
+   
+         competitor2: {
+            name: $('#1_name').val(),
+            time1: $('#1_1').val(),
+            time2: $('#1_2').val(),
+            time3: $('#1_3').val(),
+            time4: $('#1_4').val(),
+            time5: $('#1_5').val(),
+            bpa: competitor2Calcs.bpa,
+            wpa: competitor2Calcs.wpa,
+            toWin: competitor2Calcs.toWin,
+            avg: competitor2Calcs.avg
+         }
       }
    }
 

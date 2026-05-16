@@ -1,27 +1,21 @@
 import mongoose, { Schema } from "mongoose"
 
+const competitorSchema = new Schema({
+   name: String,
+   time1: String,
+   time2: String,
+   time3: String,
+   time4: String,
+   time5: String,
+   bpa: String,
+   wpa: String,
+   toWin: String,
+   avg: String
+})
+
 const calculadoraSchema = new Schema({
-   competitor1Name: String,
-   competitor1Time1: String,
-   competitor1Time2: String,
-   competitor1Time3: String,
-   competitor1Time4: String,
-   competitor1Time5: String,
-   competitor1Bpa: String,
-   competitor1Wpa: String,
-   competitor1ToWin: String,
-   competitor1Avg: String,
-   
-   competitor2Name: String,
-   competitor2Time1: String,
-   competitor2Time2: String,
-   competitor2Time3: String,
-   competitor2Time4: String,
-   competitor2Time5: String,
-   competitor2Bpa: String,
-   competitor2Wpa: String,
-   competitor2ToWin: String,
-   competitor2Avg: String,
+   competitor1: competitorSchema,
+   competitor2: competitorSchema,
 
    createdAt: {
       type: Date,
