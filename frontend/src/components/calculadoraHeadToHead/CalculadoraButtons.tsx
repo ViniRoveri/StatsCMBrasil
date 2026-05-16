@@ -102,8 +102,8 @@ export default function CalculadoraButtons(props: Props){
 
          <button className={apiButton} disabled={isLoading || copiedUrl} onClick={() => apiUrl ? handleCopyApiUrl() : handleCreateApi()} type="button">
             {isLoading ? 'Criando...' : 
-            apiUrl ? 'Copiar URL da API' : 
             copiedUrl ? 'URL copiada!' :
+            apiUrl ? 'Copiar URL da API' : 
             'Criar API'}
          </button>
       </section>
