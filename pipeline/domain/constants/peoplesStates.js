@@ -9992,6 +9992,7 @@ const peoplesStates = [
 	{ id: '2026SPIT01', state: 'RJ' },
 	{ id: '2026CARR19', state: 'RJ' },
 	{ id: '2026ARAU04', state: 'RJ' },
+	{ id: '2026CAMA06', state: 'SP' },
 ]
 
 export default peoplesStates
