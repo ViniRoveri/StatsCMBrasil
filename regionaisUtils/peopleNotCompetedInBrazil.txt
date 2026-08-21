@@ -5,8 +5,9 @@ https://www.worldcubeassociation.org/persons/2023OOST04
 https://www.worldcubeassociation.org/persons/2018NUNE02
 https://www.worldcubeassociation.org/persons/2023CAVA03
 https://www.worldcubeassociation.org/persons/2023FERR08
-https://www.worldcubeassociation.org/persons/2023OOST06
+https://www.worldcubeassociation.org/persons/2026AUDU01
 https://www.worldcubeassociation.org/persons/2023HOWE03
+https://www.worldcubeassociation.org/persons/2023OOST06
 https://www.worldcubeassociation.org/persons/2023ANDR38
 https://www.worldcubeassociation.org/persons/2023SANJ07
 https://www.worldcubeassociation.org/persons/2024QUIN18
@@ -52,7 +53,9 @@ https://www.worldcubeassociation.org/persons/2024VIEI02
 https://www.worldcubeassociation.org/persons/2023GORG01
 https://www.worldcubeassociation.org/persons/2017BARR08
 https://www.worldcubeassociation.org/persons/2022DOTT01
+https://www.worldcubeassociation.org/persons/2026MACH07
 https://www.worldcubeassociation.org/persons/2019VECO01
+https://www.worldcubeassociation.org/persons/2026GEVA01
 https://www.worldcubeassociation.org/persons/2025ALME01
 https://www.worldcubeassociation.org/persons/2023PAIX01
 https://www.worldcubeassociation.org/persons/2024DEME02
@@ -113,7 +116,6 @@ https://www.worldcubeassociation.org/persons/2024MART60
 https://www.worldcubeassociation.org/persons/2025BERC01
 https://www.worldcubeassociation.org/persons/2024POLI09
 https://www.worldcubeassociation.org/persons/2022BALB02
-https://www.worldcubeassociation.org/persons/2026AUDU01
 https://www.worldcubeassociation.org/persons/2026COST05
 https://www.worldcubeassociation.org/persons/2024MOTA02
 https://www.worldcubeassociation.org/persons/2025VINN03
@@ -151,7 +153,9 @@ https://www.worldcubeassociation.org/persons/2025ANDE14
 https://www.worldcubeassociation.org/persons/2013MIRA01
 https://www.worldcubeassociation.org/persons/2023SANT60
 https://www.worldcubeassociation.org/persons/2018TRUJ01
+https://www.worldcubeassociation.org/persons/2026QUIN06
 https://www.worldcubeassociation.org/persons/2024SOAR02
 https://www.worldcubeassociation.org/persons/2023HOOV01
 https://www.worldcubeassociation.org/persons/2024VENC02
+https://www.worldcubeassociation.org/persons/2026ALVE03
 https://www.worldcubeassociation.org/persons/2024EVAL01
