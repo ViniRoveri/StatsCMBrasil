@@ -199,6 +199,8 @@ export default function CompetitorTable(props: Props){
    }
 
    function formatTime(time: number){
+      if(isNaN(time)) return '-'
+
       const seconds = time.toFixed(2)
 
       if(time >= 60){
