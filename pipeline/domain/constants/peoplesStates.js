@@ -10133,6 +10133,17 @@ const peoplesStates = [
 	{ id: '2026MIRO02', state: 'BA' },
 	{ id: '2026BRAN14', state: 'BA' },
 	{ id: '2026SILV42', state: 'BA' },
+	{ id: '2026BRAN15', state: 'SP' },
+	{ id: '2026BARB21', state: 'SP' },
+	{ id: '2026GOUL03', state: 'SP' },
+	{ id: '2026IMAS01', state: 'SP' },
+	{ id: '2026YAMA21', state: 'SP' },
+	{ id: '2026GELO02', state: 'SP' },
+	{ id: '2026JUNI05', state: 'SP' },
+	{ id: '2026DONI01', state: 'SP' },
+	{ id: '2026ALEI01', state: 'SP' },
+	{ id: '2026SCHI10', state: 'SP' },
+	{ id: '2026DONI02', state: 'SP' },
 ]
 
 export default peoplesStates
